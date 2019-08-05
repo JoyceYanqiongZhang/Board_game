@@ -10,7 +10,7 @@
         	String email = request.getParameter("email");
         	String question = request.getParameter("question");
         	String answer = request.getParameter("answer");  
-        	Users user = new Users(username, password, email, question, answer,1);
+        	Users user = new Users(username, password, email, question, answer,0);
         	//System.out.println(user.get_is_manager());
         	Insert_operation usop = new Insert_operation();
         	boolean success = usop.insert_to_user(user);
@@ -19,6 +19,7 @@
         		ArrayList<ArrayList<String>> result = coop.get_by_from("*", "email", "user", email);
         		session.setAttribute("username", username);
         		session.setAttribute("user_id", result.get(0).get(0));
+        		coop.update_by_on("id", "user",result.get(0).get(0) , "is_online" , "1" );
         		out.println("<script>alert('register successful!');window.location.href='../view/index.jsp';</script>");
         		;
         	}else{

@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+.play_window{
+	height: 500px;
+	width: 60%;
+	
+}
+
+.play_div{
+	height: 100%;
+	width: 100%;
+}

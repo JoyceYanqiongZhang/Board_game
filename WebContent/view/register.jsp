@@ -1,14 +1,4 @@
-
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
- <script src="../view/JS/general_script.js"></script>
-</head>
-<body>
+<%@ include file="head.jsp" %>
 	<form action="../controller/register.jsp" method="POST">
 
                 <div class="form-row">
@@ -52,5 +42,4 @@
                 </div>
             </form>
 
-</body>
-</html>
+<%@ include file="footer.jsp"%>

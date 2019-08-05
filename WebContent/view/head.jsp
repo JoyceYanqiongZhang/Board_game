@@ -9,7 +9,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Board Game Platform</title>
-<script src="../view/JS/general_script.js"></script>
+<script src="../view/js/general_script.js"></script>
+<link rel="stylesheet" type="text/css" href="../view/css/css_joyce.css">
 
 </head>
 <body>
@@ -40,8 +41,10 @@ window.addEventListener("close" , function(){
 	offline_update();
 } , true)
 
+window.onbeforeunload = function(){
+	offline_update();
 }
+
+
 </script>
 <input type="hidden" id="hidden_user_id" name= "hidden_user_id"value="<% out.println(session.getAttribute("id")); %>">
-</body>
-</html>

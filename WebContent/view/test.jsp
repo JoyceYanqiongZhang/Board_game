@@ -1,13 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-<!-- embed src="../game/1/46817.swf" ></embed-->
-<embed src="../game/1/BadEggsOnline2Loader.swf" height = 500px width =800px ></embed>
-</body>
-</html>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> top.html </TITLE>
+ </HEAD>
+ <script language="JavaScript">
+ window.οnbefοreunlοad=function (){ 
+	 alert("===οnbefοreunlοad==="); 
+	 if(event.clientX>document.body.clientWidth && event.clientY < 0 || event.altKey){ 
+	 alert("close"); 
+	 }else{ 
+	 alert("refresh"); 
+	 } 
+	 } 
+
+</script>
+ 
+<BODY>
+   <p> ok</p>
+</BODY>
+</HTML>
