@@ -10,7 +10,7 @@
         	String email = request.getParameter("email");
         	String question = request.getParameter("question");
         	String answer = request.getParameter("answer");  
-        	Users user = new Users(username, password, email, question, answer,0);
+        	Users user = new Users(username, password, email, question, answer,"0");
         	//System.out.println(user.get_is_manager());
         	Insert_operation usop = new Insert_operation();
         	boolean success = usop.insert_to_user(user);

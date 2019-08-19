@@ -1,4 +1,5 @@
 <%@ include file="head.jsp"%>
+<div class="outter1">
 <form action="../controller/login.jsp" method="POST">
 
                 <div>
@@ -21,4 +22,5 @@
                     <a href="register.jsp">Register now!</a>
                 </div>
             </form>
+</div>
 <%@ include file="footer.jsp"%>

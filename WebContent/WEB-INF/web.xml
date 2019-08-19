@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" version="4.0">
+  <display-name>BoardGamePlatform</display-name>
+
+  <servlet>
+<servlet-name>Play_tic</servlet-name><!--define servlet name -->
+<servlet-class>back_controller.Play_tic</servlet-class><!--the file name that servlet is belong to -->
+</servlet>
+<servlet>
+	<servlet-name>ShowServlet</servlet-name><!--define servlet name -->
+	<servlet-class>back_controller.ShowServlet</servlet-class><!--the file name that servlet is belong to -->
+</servlet>
+<servlet>
+<servlet-name>Check_room_started</servlet-name><!--define servlet name -->
+<servlet-class>back_controller.Check_room_started</servlet-class><!--the file name that servlet is belong to -->
+</servlet>
+ <servlet>
+<servlet-name>Create_relationship</servlet-name><!--define servlet name -->
+<servlet-class>back_controller.Create_relationship</servlet-class><!--the file name that servlet is belong to -->
+</servlet>
+
+
+<servlet-mapping> <!-- build the mapping between servlet and action -->
+<servlet-name>Play_tic</servlet-name>  
+<url-pattern>/back_controller/Play_tic.do</url-pattern>    <!-- the action -->
+</servlet-mapping>
+
+<servlet-mapping> <!-- build the mapping between servlet and action -->
+<servlet-name>ShowServlet</servlet-name>  
+<url-pattern>/back_controller/ShowServlet</url-pattern>    <!-- the action -->
+</servlet-mapping>
+
+<servlet-mapping> <!-- build the mapping between servlet and action -->
+<servlet-name>Check_room_started</servlet-name>  
+<url-pattern>/back_controller/Check_room_started.do</url-pattern>    <!-- the action -->
+</servlet-mapping>
+
+<servlet-mapping> <!-- build the mapping between servlet and action -->
+<servlet-name>Create_relationship</servlet-name>  
+<url-pattern>/back_controller/Create_relationship.do</url-pattern>    <!-- the action -->
+</servlet-mapping>
+
+<filter>
+    <filter-name>charset</filter-name>
+    <filter-class>back_controller.CharsetFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>charset</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  
+  
+  <listener>
+    <listener-class>back_controller.MySessionListener</listener-class>
+  </listener>
+
+
+
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>

@@ -13,10 +13,9 @@ public class Game_record extends Basics {
 		
 	}
 	
-	public Game_record(int game_id, int win_id, Date date) {
+	public Game_record(int game_id, int win_id) {
 		this.game_id = game_id;
 		this.win_id = win_id;
-		this.date = date;
 	}
 	
 	public Game_record(int id, int game_id, int win_id, Date date) {

@@ -5,27 +5,27 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
 
 public class Users extends Basics {
-	private int id;
+	private String id;
 	private String username;
 	private String password;
 	private String email;
 	private String gender;
 	private String location;
-	private Date date_of_birth;
-	private int is_manager;
+	private String date_of_birth;
+	private String is_manager;
 	private String pic;
-	private int is_blocked;
-	private int wins;
-	private int played;
+	private String is_blocked;
+	private String wins;
+	private String played;
 	private String recover_question;
 	private String recover_answer;
-	private int is_online;
+	private String is_online;
 	
 	public Users() {
 		
 	}
 	
-	public Users(String username, String password, String email, String recover_question, String recover_answer, int is_online) {
+	public Users(String username, String password, String email, String recover_question, String recover_answer, String is_online) {
 		this.username = username;
 		String en_password = this.Encode( password);
 		this.password = en_password;
@@ -33,17 +33,17 @@ public class Users extends Basics {
 		this.gender = "";
 		this.location = "";
 		this.date_of_birth = null;
-		this.is_manager = 0;
+		this.is_manager = "0";
 		this.pic = "";
-		this.is_blocked = 0;
-		this.wins = 0;
-		this.played = 0;
+		this.is_blocked = "0";
+		this.wins = "0";
+		this.played = "0";
 		this.recover_question = recover_question;
 		this.recover_answer = recover_answer;
 		this.is_online = is_online;
 	}
 	
-	public Users(String username, String password, String email, String gender, String location, Date date_of_birth, int is_manager,String pic, int is_blocked, int wins, int played,String recover_question,String recover_answer, int is_online) {
+	public Users(String username, String password, String email, String gender, String location, String date_of_birth, String is_manager,String pic, String is_blocked, String wins, String played,String recover_question,String recover_answer, String is_online) {
 		this.username = username;
 		String en_password = this.Encode( password);
 		this.password = en_password;
@@ -61,7 +61,7 @@ public class Users extends Basics {
 		this.is_online = is_online;
 	}
 	
-	public Users(int id, String username, String password, String email, String gender, String location, Date date_of_birth, int is_manager,String pic, int is_blocked, int wins, int played,String recover_question,String recover_answer,int is_online) {
+	public Users(String id, String username, String password, String email, String gender, String location, String date_of_birth, String is_manager,String pic, String is_blocked, String wins, String played,String recover_question,String recover_answer,String is_online) {
 		this.id = id;
 		this.username = username;
 		String en_password = this.Encode( password);
@@ -80,10 +80,10 @@ public class Users extends Basics {
 		this.is_online = is_online;
 	}
 	
-	public void set_id(int id) {
+	public void set_id(String id) {
 		this.id = id;
 	}
-	public int get_id() {
+	public String get_id() {
 		return this.id;
 	}
 	
@@ -128,20 +128,20 @@ public class Users extends Basics {
 		this.location = location;
 	}
 	
-	public Date get_date_of_birth () {
+	public String get_date_of_birth () {
 		return this.date_of_birth;
 	}
 	
-	public void set_date_of_birth (Date date_of_birth) {
+	public void set_date_of_birth (String date_of_birth) {
 		this.date_of_birth = date_of_birth;
 	
 	}
 	
-	public int get_is_manager () {
+	public String get_is_manager () {
 		return this.is_manager;
 	}
 	
-	public void set_is_manager (int is_manager) {
+	public void set_is_manager (String is_manager) {
 		this.is_manager = is_manager;
 	}
 	
@@ -154,27 +154,27 @@ public class Users extends Basics {
 		
 	}
 	
-	public int get_is_blocked () {
+	public String get_is_blocked () {
 		return this.is_blocked;
 	}
 	
-	public void set_is_blocked (int is_blocked) {
+	public void set_is_blocked (String is_blocked) {
 		this.is_blocked = is_blocked;
 	}
 	
-	public int get_wins () {
+	public String get_wins () {
 		return this.wins;
 	}
 	
-	public void set_wins (int wins) {
+	public void set_wins (String wins) {
 		this.wins = wins;
 	}
 	
-	public int get_played () {
+	public String get_played () {
 		return this.played;
 	}
 	
-	public void set_played (int played) {
+	public void set_played (String played) {
 		this.played = played;
 	}
 	
@@ -194,11 +194,11 @@ public class Users extends Basics {
 		this.recover_answer = recover_answer;
 	}
 	
-    public int get_is_online() {
+    public String get_is_online() {
     	return this.is_online;
     } 
     
-    public void set_is_online(int is_online) {
+    public void set_is_online(String is_online) {
     	this.is_online = is_online;
     }
 	

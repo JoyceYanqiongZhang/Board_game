@@ -101,7 +101,7 @@ public class Insert_operation {
 	}
 	
 	public boolean insert_to_game_record(Game_record game_record) {
-		String sql="INSERT INTO `board_game`.`game_record` (`game_id`,`win_id`,`date`) VALUES ('"+ game_record.get_game_id()+ "','"+ game_record.get_win_id()+ "','" +game_record.get_date()+ "')";
+		String sql="INSERT INTO `board_game`.`game_record` (`room_id`,`win_id`,`date`) VALUES ('"+ game_record.get_game_id()+ "','"+ game_record.get_win_id()+ "',CURRENT_DATE)";
 		PreparedStatement st;
 		boolean success = true;
 		try {

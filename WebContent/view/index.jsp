@@ -4,6 +4,8 @@
 <%@ page import="basic_class.*" %>
 <%@ page import="model.*" %>
 
+<%String click_button = request.getParameter("c"); %>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -16,14 +18,14 @@
     <script src="js/jquery-1.8.2.min.js"></script>
     <script src="js/switch.js"></script>
     <script src="js/js.js"></script>
-    <script src="/js/general_script.js"></script>
+    <script src="general_script.js"></script>
     <style>
         html {
             overflow: hidden;
         }
     </style>
 </head>
-<body>
+<body onload="load('<% out.print(click_button);%>');">
 
 <script type="text/javascript">
 //online checking
@@ -38,24 +40,6 @@ window.addEventListener("offline" , function()
 	offline_update();
 } , true);
 
-// check browser online condition
-if (navigator.onLine)
-{
-	alert("Online");
-}
-else
-{
-	alert("Offline");
-}
-
-window.addEventListener("close" , function(){
-	offline_update();
-} , true)
-
-window.onbeforeunload = function(){
-	offline_update();
-}
-
 
 </script>
 
@@ -67,11 +51,11 @@ window.onbeforeunload = function(){
         </a>
         <ul>
             <li><a href="index.jsp" class="active">Home<br /><span>Home</span></a></li>
-        	<li class="nav_num4"><a>Game<br /><span>Game</span></a></li>
-        	<li class="nav_num3"><a href="rooms.jsp">Room<br /><span>Room</span></a></li>
-        	<li class="nav_num5"><a  href="players.jsp?t=online">Players<br /><span>Players</span></a></li>
-            <li class="nav_num2"><a>Leaderboard<br /><span>Leaderboard</span></a></li>
-            <li class="nav_num6"><a>My Account<br /><span>My Account</span></a></li>
+        	<li class="nav_num4" id="nav_num4"><a>Game<br /><span>Game</span></a></li>
+        	<li class="nav_num3" id="nav_num3"><a>Room<br /><span>Room</span></a></li>
+        	<li class="nav_num5" id="nav_num5"><a  href="http://localhost:8080/BoardGamePlatform/back_controller/ShowServlet">Players<br /><span>Players</span></a></li>
+            <li class="nav_num2" id="nav_num2"><a>Leaderboard<br /><span>Leaderboard</span></a></li>
+            <li class="nav_num6" id="nav_num6"><a>My Account<br /><span>My Account</span></a></li>
         </ul>
         <div class="hotline">
             <span>Hi, <% if(session.getAttribute("username") != null)
@@ -108,8 +92,8 @@ window.onbeforeunload = function(){
         <ul>
             <li><a href="index.jsp" class="active">Home<br /><span>Home</span></a></li>
         	<li class="nav_num4"><a>Game<br /><span>Game</span></a></li>
-        	<li class="nav_num3"><a href="rooms.jsp">Room<br /><span>Room</span></a></li>
-        	<li class="nav_num5"><a href="players.jsp?t=online">Players<br /><span>Players</span></a></li>
+        	<li class="nav_num3"><a>Room<br /><span>Room</span></a></li>
+        	<li class="nav_num5"><a href="http://localhost:8080/BoardGamePlatform/back_controller/ShowServlet">Players<br /><span>Players</span></a></li>
             <li class="nav_num2"><a>Leaderboard<br /><span>Leaderboard</span></a></li>
             <li class="nav_num6"><a>My Account<br /><span>My Account</span></a></li>
         </ul>
@@ -424,7 +408,7 @@ window.onbeforeunload = function(){
                         	<% Common_operation coop = new Common_operation();
                         	ArrayList<ArrayList<String>> game_set = coop.get_by_from("*", "1", "game", "1");
                         	for(int i=0; i<game_set.size();i++){
-                        		out.println("<li><a href='play.jsp?id=" + game_set.get(i).get(0) + "'><img src='" + game_set.get(i).get(6) +"' /><img src='" + game_set.get(i).get(6) +"' /></a><div><h4>" + game_set.get(i).get(1) + "</h4></div></li>");
+                        		out.println("<li><a href='game_detail.jsp?g=" + game_set.get(i).get(0) + "'><img src='" + game_set.get(i).get(6) +"' /><img src='" + game_set.get(i).get(6) +"' /></a><div><h4>" + game_set.get(i).get(1) + "</h4></div></li>");
                         	}
                         	
                         	%>
@@ -440,47 +424,26 @@ window.onbeforeunload = function(){
         </script>
         <div class="num" id="num_4">
             <div class="news">
-                <div class="news-cont width_1000">
-                    <div class="title news-title">
-                        <img src="./images/news.png" alt="" />
-                    </div>
-                </div>
-                <div class="news-list">
-                    <a href="list-news.html">
-                        <img src="./images/news1.jpg" alt="" />
-                        <div>
-                            <span>09/<sub>Oct</sub></span>
-                            <p>新闻标题</p>
-                        </div>
-                    </a>
-                    <a href="list-news.html">
-                        <img src="./images/news2.jpg" alt="" />
-                        <div>
-                            <span>09/<sub>Oct</sub></span>
-                            <p>新闻标题</p>
-                        </div>
-                    </a>
-                    <a href="list-news.html">
-                        <img src="./images/news3.jpg" alt="" />
-                        <div>
-                            <span>09/<sub>Oct</sub></span>
-                            <p>新闻标题</p>
-                        </div>
-                    </a>
-                    <a href="list-news.html">
-                        <img src="./images/news4.jpg" alt="" />
-                        <div>
-                            <span>09/<sub>Oct</sub></span>
-                            <p>新闻标题</p>
-                        </div>
-                    </a>
-                    <a href="list-news.html">
-                        <img src="./images/news5.jpg" alt="" />
-                        <div>
-                            <span>09/<sub>Oct</sub></span>
-                            <p>新闻标题</p>
-                        </div>
-                    </a>
+            <div class="news-list">
+            <%
+            //get room info from database
+            Common_operation coop1 = new Common_operation();
+            ArrayList<ArrayList<String>> room_set = coop1.get_by_from("*", "is_public", "room", "1" );
+
+            ArrayList<ArrayList<ArrayList<String>>> total_room_player_set = new ArrayList<ArrayList<ArrayList<String>>>();
+            for(int i=0;i<room_set.size();i++){
+            	total_room_player_set.add(coop1.get_by_from("*", "room_id", "room_players", room_set.get(i).get(0) ));
+            }
+            for(int i=0; i<room_set.size();i++){
+            ArrayList<ArrayList<String>> thisgame = coop1.get_by_from("name,pic", "id", "game", room_set.get(i).get(1));
+            int num_of_players = total_room_player_set.get(i).size();
+            out.println("<a href='room_details.jsp?r=" + room_set.get(i).get(0) + "'><img src='" + thisgame.get(0).get(1) +"' alt='' /><div><span><sub>Enter</sub></span><p>" +thisgame.get(0).get(0) + "</p></div></a>");
+            }
+            
+            coop1.close();
+
+            %>
+ 
                 </div>
                 <div class="case-bottm"><a href="list-news.html" style="display:block;width:100%;height:100%;"></a></div>
             </div>

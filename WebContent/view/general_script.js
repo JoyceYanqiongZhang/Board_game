@@ -142,3 +142,89 @@ function new_password_check() {
     
 
 }
+
+function check_started(){
+	var room_id = document.getElementById("room_id").value;
+	$.ajax({
+
+        url:"http://localhost:8080/BoardGamePlatform/back_controller/Check_room_started.do",
+        type:"post",
+        data:{
+        		"is_change" : "N",
+        		"room_id": room_id
+        		},
+        dataType:'text',
+        success:function(result){
+        	if(result == 1){
+        		window.location.href="start_play.jsp?role=1&rid=" + room_id;
+        		window.clearInterval(timer);
+        	}else{}
+        }
+          
+    })
+}
+
+function let_visitor_login(){
+	alert("Please login or register first!");
+	window.location.href="login.jsp";
+}
+
+function non_host_do(){
+	
+	var room_id = document.getElementById("room_id").value;
+	var user_id = document.getElementById("user_id").value;
+	 alert(room_id);
+	 alert(user_id);
+	$.ajax({
+
+        url:"http://localhost:8080/BoardGamePlatform/back_controller/Create_relationship.do",
+        type:"post",
+        data:{
+        		"table" : "room_players",
+        		"name1" : "room_id",
+        		"name2": "player_id",
+        		"int1": room_id,
+        		"int2": user_id
+        		},
+        dataType:'text',
+        success:function(result){
+        	
+        }
+          
+    })
+    
+    
+	var timer = window.setInterval('check_started()',100);
+	
+}
+
+function host_do(){
+	var room_id = document.getElementById("room_id").value;
+	var user_id = document.getElementById("user_id").value;
+	
+	$.ajax({
+
+        url:"http://localhost:8080/BoardGamePlatform/back_controller/Check_room_started.do",
+        type:"post",
+        data:{
+        		"is_change" : "Y",
+        		"room_id": room_id
+        		},
+        dataType:'text',
+        success:function(result){
+        	
+        		window.location.href="start_play.jsp?role=0&rid=" + room_id;
+        	
+        }
+          
+    })
+    
+	
+}
+
+function load(click_button){
+	if(click_button != null){
+		document.getElementById(click_button).click();
+
+	}
+}
