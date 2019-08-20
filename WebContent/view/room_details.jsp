@@ -58,9 +58,9 @@
 				</div>
 			</div>
 		</div>
-		<div class="line_30_div" id="room_log_div">
+		<div class="line_30_div" id="room_log_div" onload="load_room_log();">
 		<h3>Room Log</h3>
-		<p><% out.println(room_info.get(6)); %></p>
+		<p id="room_log_content"><% out.println(room_info.get(6)); %></p>
 		</div>
 	</div>
 	

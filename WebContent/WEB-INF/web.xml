@@ -18,6 +18,26 @@
 <servlet-name>Create_relationship</servlet-name><!--define servlet name -->
 <servlet-class>back_controller.Create_relationship</servlet-class><!--the file name that servlet is belong to -->
 </servlet>
+<servlet>
+<servlet-name>Create_record</servlet-name><!--define servlet name -->
+<servlet-class>back_controller.Create_record</servlet-class><!--the file name that servlet is belong to -->
+</servlet>
+<servlet>
+<servlet-name>Create_room</servlet-name><!--define servlet name -->
+<servlet-class>back_controller.Create_room</servlet-class><!--the file name that servlet is belong to -->
+</servlet>
+<servlet>
+<servlet-name>Check_room_full</servlet-name><!--define servlet name -->
+<servlet-class>back_controller.Check_room_full</servlet-class><!--the file name that servlet is belong to -->
+</servlet>
+<servlet>
+<servlet-name>Get_room_log</servlet-name><!--define servlet name -->
+<servlet-class>back_controller.Get_room_log</servlet-class><!--the file name that servlet is belong to -->
+</servlet>
+<servlet>
+<servlet-name>Update_room_log</servlet-name><!--define servlet name -->
+<servlet-class>back_controller.Update_room_log</servlet-class><!--the file name that servlet is belong to -->
+</servlet>
 
 
 <servlet-mapping> <!-- build the mapping between servlet and action -->
@@ -38,6 +58,31 @@
 <servlet-mapping> <!-- build the mapping between servlet and action -->
 <servlet-name>Create_relationship</servlet-name>  
 <url-pattern>/back_controller/Create_relationship.do</url-pattern>    <!-- the action -->
+</servlet-mapping>
+
+<servlet-mapping> <!-- build the mapping between servlet and action -->
+<servlet-name>Create_record</servlet-name>  
+<url-pattern>/back_controller/Create_record.do</url-pattern>    <!-- the action -->
+</servlet-mapping>
+
+<servlet-mapping> <!-- build the mapping between servlet and action -->
+<servlet-name>Create_room</servlet-name>  
+<url-pattern>/back_controller/Create_room.do</url-pattern>    <!-- the action -->
+</servlet-mapping>
+
+<servlet-mapping> <!-- build the mapping between servlet and action -->
+<servlet-name>Check_room_full</servlet-name>  
+<url-pattern>/back_controller/Check_room_full.do</url-pattern>    <!-- the action -->
+</servlet-mapping>
+
+<servlet-mapping> <!-- build the mapping between servlet and action -->
+<servlet-name>Get_room_log</servlet-name>  
+<url-pattern>/back_controller/Get_room_log.do</url-pattern>    <!-- the action -->
+</servlet-mapping>
+
+<servlet-mapping> <!-- build the mapping between servlet and action -->
+<servlet-name>Update_room_log</servlet-name>  
+<url-pattern>/back_controller/Update_room_log.do</url-pattern>    <!-- the action -->
 </servlet-mapping>
 
 <filter>

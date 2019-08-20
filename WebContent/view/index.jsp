@@ -4,7 +4,9 @@
 <%@ page import="basic_class.*" %>
 <%@ page import="model.*" %>
 
-<%String click_button = request.getParameter("c"); %>
+<%String click_button = request.getParameter("c");
+	Common_operation coop = new Common_operation();
+%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -405,7 +407,7 @@ window.addEventListener("offline" , function()
                     <img class="mr_frBtnL prev" src="./images/prev.png" />
                     <div class="mr_frUl">
                         <ul>
-                        	<% Common_operation coop = new Common_operation();
+                        	<% 
                         	ArrayList<ArrayList<String>> game_set = coop.get_by_from("*", "1", "game", "1");
                         	for(int i=0; i<game_set.size();i++){
                         		out.println("<li><a href='game_detail.jsp?g=" + game_set.get(i).get(0) + "'><img src='" + game_set.get(i).get(6) +"' /><img src='" + game_set.get(i).get(6) +"' /></a><div><h4>" + game_set.get(i).get(1) + "</h4></div></li>");
@@ -423,6 +425,20 @@ window.addEventListener("offline" , function()
             jQuery(".mr_frbox").slide({ titCell: "", mainCell: ".mr_frUl ul", autoPage: true, effect: "leftLoop", autoPlay: true, vis: 4 });
         </script>
         <div class="num" id="num_4">
+	        <div class="vertical_100">
+	        	<form id="create_room" action="http://localhost:8080/BoardGamePlatform/back_controller/Create_room.do" method="post">
+	        	<% ArrayList<ArrayList<String>> all_games = coop.get_by_from("*", "1", "game", "1"); %>
+	        			<input type="hidden" name = "hidden_user_id" id="hidden_user_id" value="<% out.println(session.getAttribute("user_id"));%>"></input>
+	        			<select name="new_room_game">
+	        			<% for(int i=0;i<all_games.size();i++){
+	        					out.println("<option value='"+ all_games.get(i).get(0) +"'>"+ all_games.get(i).get(1) +"</option>");
+	        				} 
+	        			%>
+	        			</select>
+	        		   <button type="submit">Create a New Room</button>
+	        	
+	        	</form>
+	        </div>
             <div class="news">
             <div class="news-list">
             <%

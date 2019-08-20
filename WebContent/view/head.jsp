@@ -30,6 +30,8 @@
 <div class="the_page">
 
 <input type="hidden" id="user_id" name= "user_id"value="<% out.println(session.getAttribute("user_id")); %>">
+<input type="hidden" id="user_name" name= "user_name"value="<% out.println(session.getAttribute("username")); %>">
+
 
 
 <script type="text/javascript">

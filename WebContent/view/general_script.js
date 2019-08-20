@@ -148,6 +148,7 @@ function check_started(){
 	$.ajax({
 
         url:"http://localhost:8080/BoardGamePlatform/back_controller/Check_room_started.do",
+        async : false,
         type:"post",
         data:{
         		"is_change" : "N",
@@ -173,52 +174,66 @@ function non_host_do(){
 	
 	var room_id = document.getElementById("room_id").value;
 	var user_id = document.getElementById("user_id").value;
-	 alert(room_id);
-	 alert(user_id);
-	$.ajax({
-
-        url:"http://localhost:8080/BoardGamePlatform/back_controller/Create_relationship.do",
-        type:"post",
-        data:{
-        		"table" : "room_players",
-        		"name1" : "room_id",
-        		"name2": "player_id",
-        		"int1": room_id,
-        		"int2": user_id
-        		},
-        dataType:'text',
-        success:function(result){
-        	
-        }
-          
-    })
-    
-    
-	var timer = window.setInterval('check_started()',100);
+	var user_name = document.getElementById("user_name").value;
+	var is_full = check_room_full(room_id);
 	
+	 alert(is_full);
+	 //alert(user_id);
+	
+	if(is_full == "N"){
+		$.ajax({
+	
+	        url:"http://localhost:8080/BoardGamePlatform/back_controller/Create_relationship.do",
+	        async : false,
+	        type:"post",
+	        data:{
+	        		"table" : "room_players",
+	        		"name1" : "room_id",
+	        		"name2": "player_id",
+	        		"int1": room_id,
+	        		"int2": user_id
+	        		},
+	        dataType:'text',
+	        success:function(result){
+	        	
+	        }
+	          
+	    })
+	    var add_room_log = user_name + "joined this room<br>";
+		update_room_log(add_room_log);
+	    
+		var timer = window.setInterval('check_started()',100);
+	}else{
+		alert("This room is full! Please try another one!");
+	}
 }
 
 function host_do(){
 	var room_id = document.getElementById("room_id").value;
 	var user_id = document.getElementById("user_id").value;
-	
-	$.ajax({
+	var is_full = check_room_full(room_id);
 
-        url:"http://localhost:8080/BoardGamePlatform/back_controller/Check_room_started.do",
-        type:"post",
-        data:{
-        		"is_change" : "Y",
-        		"room_id": room_id
-        		},
-        dataType:'text',
-        success:function(result){
-        	
-        		window.location.href="start_play.jsp?role=0&rid=" + room_id;
-        	
-        }
-          
-    })
-    
+	if(is_full == "Y"){
+		$.ajax({
+	
+	        url:"http://localhost:8080/BoardGamePlatform/back_controller/Check_room_started.do",
+	        async : false,
+	        type:"post",
+	        data:{
+	        		"is_change" : "Y",
+	        		"room_id": room_id
+	        		},
+	        dataType:'text',
+	        success:function(result){
+	        	
+	        		window.location.href="start_play.jsp?role=0&rid=" + room_id;
+	        	
+	        }
+	          
+	    })
+	}else{
+		alert("This room is not full yet! Please wait for other players to join in!");
+	}
 	
 }
 
@@ -227,4 +242,77 @@ function load(click_button){
 		document.getElementById(click_button).click();
 
 	}
+}
+
+function check_room_full(room_id){
+	var is_full = "";
+	$.ajax({
+
+        url:"http://localhost:8080/BoardGamePlatform/back_controller/Check_room_full.do",
+        async : false,
+        type:"post",
+        data:{
+        		"room_id": room_id
+        		},
+        dataType:'text',
+        success:function(result){
+        	//alert("check_full ajax");
+        	is_full = result[0];
+        	
+        	
+        }
+          
+    })
+    //alert("after check_full ajax");
+    return is_full;
+}
+
+function load_room_log(){
+	var timer = window.setInterval('refresh_room_log()',100);
+}
+
+function refresh_room_log(){
+	var room_id = document.getElementById("room_id");
+	var room_log;
+	
+	$.ajax({
+
+        url:"http://localhost:8080/BoardGamePlatform/back_controller/Get_room_log.do",
+        async : false,
+        type:"post",
+        data:{
+        		"room_id": room_id
+        		},
+        dataType:'text',
+        success:function(result){
+        	room_log = result[0];
+        	
+        	
+        }
+          
+    })
+    document.getElementById("room_log_content").innerHTML = room_log;
+	
+}
+
+function update_room_log(add_room_log){
+	var room_id = document.getElementById("room_id");
+	alert("js update function invoked");
+	
+	$.ajax({
+
+        url:"http://localhost:8080/BoardGamePlatform/back_controller/Update_room_log.do",
+        async : false,
+        type:"post",
+        data:{
+        		"room_id": room_id,
+        		"add_room_log": add_room_log
+        		},
+        dataType:'text',
+        success:function(result){
+        	
+        	
+        }
+          
+    })
 }

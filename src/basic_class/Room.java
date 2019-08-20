@@ -18,7 +18,7 @@ public class Room extends Basics {
 		this.size = size;
 		this.is_blocked = 0;
 		this.host_id = host_id;
-		this.is_public = 0;
+		this.is_public = 1;
 		this.room_log = "";
 	}
 	

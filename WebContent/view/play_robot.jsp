@@ -1,8 +1,6 @@
 <%@ include file="head.jsp"%>
 <% Common_operation coop = new Common_operation();
 	Insert_operation inop = new Insert_operation();
-	String room_id = request.getParameter("r");
-	Users current_user = (Users)session.getAttribute("current_user");
 	%>
 <div class="outter1">
     <canvas id="canvas" width="400" height="400"></canvas>
@@ -137,6 +135,7 @@
             let gs = tileArray[6].state;
             let hs = tileArray[7].state;
             let is = tileArray[8].state;
+            let current_user_id = document.getElementById("user_id").value;
  
             //Equals function checks if each value in the array has a state of X or O
             if (equals([as, bs, cs], "X") || equals([ds, es, fs], "X") || equals([gs, hs, is], "X") ||
@@ -151,8 +150,8 @@
 			        type:"post",
 			        data:{
 			        		"is_robot":"Y",
-			        		"room_id": room_id,
-			        		"win_id": current_user.get_id();
+			        		"win_id": current_user_id,
+			        		"current_user_id": current_user_id
 			        		},
 			        dataType:'text',
 			        success:function(result){
@@ -171,8 +170,8 @@
 			        type:"post",
 			        data:{
 		        		"is_robot":"Y",
-						"room_id": room_id,
-			        	"win_id": "robot";
+			        	"win_id": "robot",
+			        	"current_user_id": current_user_id
 			        		},
 			        dataType:'text',
 			        success:function(result){
@@ -184,6 +183,20 @@
             } else if (available.length === 0) {
                 alert("It's a tie!");
                 game.state = "over";
+              //insert game record to the database
+                $.ajax({
+			        url:"http://localhost:8080/BoardGamePlatform/back_controller/Create_record.do",
+			        type:"post",
+			        data:{
+		        		"is_robot":"Y",
+			        	"win_id": "none",
+			        	"current_user_id": current_user_id
+			        		},
+			        dataType:'text',
+			        success:function(result){
+			        }
+			          
+			    })
             }
         }
  

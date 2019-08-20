@@ -273,13 +273,13 @@ display:none;
 
 
 
-.news{background: rgba(0,0,0,0.4);width:100%;height:100%;}
+.news{width:100%;height:100%;float:left}
 .news-title{text-align: right;}
-.news-list{width:70%;display: inline-block;position: absolute;left:0;bottom: 20%;margin-left:-35%;left:50%;}
+.news-list{width:70%;display: inline-block;bottom: 20%;left:50%;}
 .news-list img{float:left;transition:all 1s ease,opacity 1.5s ease;width:100%;}
 .news-list a{display: block;float:left;position: relative;overflow: hidden;}
-.news-list a{width:25%;}
-.news-list a:nth-of-type(2),.news-list a:nth-of-type(3),.news-list a:nth-of-type(4),.news-list a:nth-of-type(5){width:25%;}
+.news-list a{width:18%;margin:1%}
+.news-list a:nth-of-type(2),.news-list a:nth-of-type(3),.news-list a:nth-of-type(4),.news-list a:nth-of-type(5){}
 .news-list a:nth-of-type(1) img{transform:perspective(200px) translateX(-300px) translateZ(-300px) rotateY(180deg);opacity: 0}
 .news-list a:nth-of-type(2) img{transform:perspective(200px) translateZ(-300px) rotateY(360deg) rotateX(360deg);opacity: 0}
 .news-list a:nth-of-type(3) img{transform:perspective(200px) translateZ(-300px) rotateX(180deg);opacity: 0}

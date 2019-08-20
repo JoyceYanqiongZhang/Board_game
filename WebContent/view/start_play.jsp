@@ -152,13 +152,34 @@
             let gs = tileArray[6].state;
             let hs = tileArray[7].state;
             let is = tileArray[8].state;
+            let current_user_id = document.getElementById("user_id").value;
+            let room_id = document.getElementById("room_id").value;
+
  
             //Equals function checks if each value in the array has a state of X or O
             if (equals([as, bs, cs], player_icon) || equals([ds, es, fs], player_icon) || equals([gs, hs, is], player_icon) ||
                 equals([as, ds, gs], player_icon) || equals([bs, es, hs], player_icon) || equals([cs, fs, is], player_icon) ||
                 equals([as, es, is], player_icon) || equals([cs, es, gs], player_icon)) {
-                alert("Player wins!");
+                alert("You win!");
                 game.state = "over";
+                
+              //insert game record to the database
+                $.ajax({
+			        url:"http://localhost:8080/BoardGamePlatform/back_controller/Create_record.do",
+			        async : false,
+			        type:"post",
+			        data:{
+			        		"is_robot":"N",
+			        		"room_id": room_id,
+			        		"win_id": current_user_id,
+			        		"current_user_id": current_user_id
+			        		},
+			        dataType:'text',
+			        success:function(result){
+			        }
+			          
+			    })
+                
             } else if (equals([as, bs, cs], opp_icon) || equals([ds, es, fs], opp_icon) || equals([gs, hs, is], opp_icon) ||
                 equals([as, ds, gs], opp_icon) || equals([bs, es, hs], opp_icon) || equals([cs, fs, is], opp_icon) ||
                 equals([as, es, is], opp_icon) || equals([cs, es, gs], opp_icon)) {
@@ -168,6 +189,25 @@
             } else if (available.length === 0) {
                 alert("It's a tie!");
                 game.state = "over";
+                if(player_num == 0){
+                    
+                	//insert game record to the database
+                	$.ajax({
+    			        url:"http://localhost:8080/BoardGamePlatform/back_controller/Create_record.do",
+    			        
+    			        type:"post",
+    			        data:{
+    			        		"is_robot":"N",
+    			        		"room_id": room_id,
+    			        		"win_id": "none",
+    			        		"current_user_id": current_user_id
+    			        		},
+    			        dataType:'text',
+    			        success:function(result){
+    			        }
+    			          
+    			    })
+                }
             }
         }
  

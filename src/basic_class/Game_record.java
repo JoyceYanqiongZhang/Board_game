@@ -6,19 +6,19 @@ public class Game_record extends Basics {
 	
 	private int id;
 	private int game_id;
-	private int win_id;
+	private String win_id;
 	private Date date;
 	
 	public Game_record() {
 		
 	}
 	
-	public Game_record(int game_id, int win_id) {
+	public Game_record(int game_id, String win_id) {
 		this.game_id = game_id;
 		this.win_id = win_id;
 	}
 	
-	public Game_record(int id, int game_id, int win_id, Date date) {
+	public Game_record(int id, int game_id, String win_id, Date date) {
 		this.id = id;
 		this.game_id = game_id;
 		this.win_id = win_id;
@@ -40,10 +40,10 @@ public class Game_record extends Basics {
 		return this.game_id;
 	}
 	
-	public void set_win_id(int win_id) {
+	public void set_win_id(String win_id) {
 		this.win_id = win_id;
 	}
-	public int get_win_id() {
+	public String get_win_id() {
 		return this.win_id;
 	}
 	

@@ -1,4 +1,5 @@
 package model;
+import java.io.Serializable;
 import java.sql.*;
 import basic_class.*;
 
@@ -56,25 +57,47 @@ public class Insert_operation {
 	
 	}
 	
-	public boolean insert_to_room(Room room) {
-		String sql="INSERT INTO `board_game`.`room` (`game_id`,`size`,`is_blocked`,`host_id`,`is_public`,`room_log`) VALUES ('"+ room.get_game_id()+ "','"+ room.get_size()+ "','" +room.get_is_blocked()+ "','" +room.get_host_id()+ "','" +room.get_is_public()+ "'," +room.get_room_log()+ "')";
+	public String insert_to_room(Room room) {
+		String sql="INSERT INTO `board_game`.`room` (`game_id`,`size`,`is_blocked`,`host_id`,`is_public`,`room_log`) VALUES ('"+ room.get_game_id()+ "','"+ room.get_size()+ "','" +room.get_is_blocked()+ "','" +room.get_host_id()+ "','" +room.get_is_public()+ "','" +room.get_room_log()+ "');";
 		PreparedStatement st;
-		boolean success = true;
+		//String result = "";
+		Serializable ret = null;
 		try {
+			st = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+			st.executeUpdate();
+		    ResultSet rs = st.getGeneratedKeys();
+		    if (rs.next()) {
+		        ret = (Serializable) rs.getObject(1);
+		    } 
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		};
+		
+		//System.out.print(ret);
+		return ret.toString();
+		/*try {
 			System.out.println(sql);
 			st = con.prepareStatement(sql);
-			st.execute();
+			boolean if_return = st.execute();
+			if(if_return) {
+				ResultSet rs=st.getResultSet();
+				result = rs.toString();
+			}
+			
+			
+			//st.execute();
 			st.close();
 			con.close();
 			System.out.println(sql);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			success = false;
+	
 			System.out.println(e.getStackTrace());
 			e.printStackTrace();
 		} finally {
-			return success;
-		}
+			return result;
+		}*/
 	
 	}
 	
