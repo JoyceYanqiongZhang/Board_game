@@ -68,6 +68,8 @@ public class Create_room extends HttpServlet {
         
    	 response.setCharacterEncoding("UTF-8");
    	
+   	 coop.close();
+   	 inop.close();
      //PrintWriter out = response.getWriter();
      //out.write();
         

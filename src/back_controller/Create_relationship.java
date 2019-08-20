@@ -52,6 +52,8 @@ public class Create_relationship extends HttpServlet {
         
         
    	 response.setCharacterEncoding("UTF-8");
+   	 
+   	 inop.close();
    	
      //PrintWriter out = response.getWriter();
      //out.write();

@@ -37,4 +37,5 @@ Common_operation coop = new Common_operation();
 </table>
 </div>
 </div>
+<% coop.close(); %>
 <%@ include file="footer.jsp"%>

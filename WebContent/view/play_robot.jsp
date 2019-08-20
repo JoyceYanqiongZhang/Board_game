@@ -473,5 +473,8 @@
         }
     </script>
 </div>
+<% coop.close();
+inop.close();
+%>
 <%@ include file="footer.jsp"%>
  

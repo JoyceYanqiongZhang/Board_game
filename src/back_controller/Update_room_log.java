@@ -2,7 +2,9 @@ package back_controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -42,9 +44,14 @@ public class Update_room_log extends HttpServlet {
     	System.out.println("servlet update working");
         String room_id = request.getParameter("room_id");
         String add_room_log = request.getParameter("add_room_log");
-        coop.update_by_on("id", "room", room_id, "room_log", "CONCAT(room_log,"+ add_room_log +")");
+        
+        //get current date
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//set the date format
+        df.format(new Date());
+        coop.update_by_on_function("id", "room", room_id, "room_log", "CONCAT(room_log,'"+ df.format(new Date())+ "  " + add_room_log +"')");
       
    	 response.setCharacterEncoding("UTF-8");
+   	 coop.close();
    	
      //PrintWriter out = response.getWriter();
      //out.write(room_log);

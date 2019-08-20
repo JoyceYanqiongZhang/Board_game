@@ -38,6 +38,14 @@
 <servlet-name>Update_room_log</servlet-name><!--define servlet name -->
 <servlet-class>back_controller.Update_room_log</servlet-class><!--the file name that servlet is belong to -->
 </servlet>
+<servlet>
+<servlet-name>Delete_relationship</servlet-name><!--define servlet name -->
+<servlet-class>back_controller.Delete_relationship</servlet-class><!--the file name that servlet is belong to -->
+</servlet>
+<servlet>
+<servlet-name>Get_room_players</servlet-name><!--define servlet name -->
+<servlet-class>back_controller.Get_room_players</servlet-class><!--the file name that servlet is belong to -->
+</servlet>
 
 
 <servlet-mapping> <!-- build the mapping between servlet and action -->
@@ -84,6 +92,17 @@
 <servlet-name>Update_room_log</servlet-name>  
 <url-pattern>/back_controller/Update_room_log.do</url-pattern>    <!-- the action -->
 </servlet-mapping>
+
+<servlet-mapping> <!-- build the mapping between servlet and action -->
+<servlet-name>Delete_relationship</servlet-name>  
+<url-pattern>/back_controller/Delete_relationship.do</url-pattern>    <!-- the action -->
+</servlet-mapping>
+
+<servlet-mapping> <!-- build the mapping between servlet and action -->
+<servlet-name>Get_room_players</servlet-name>  
+<url-pattern>/back_controller/Get_room_players.do</url-pattern>    <!-- the action -->
+</servlet-mapping>
+
 
 <filter>
     <filter-name>charset</filter-name>

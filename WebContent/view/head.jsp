@@ -26,7 +26,7 @@
         }
     </style>
 </head>
-<body>
+<body onload = "load_refresh()">
 <div class="the_page">
 
 <input type="hidden" id="user_id" name= "user_id"value="<% out.println(session.getAttribute("user_id")); %>">

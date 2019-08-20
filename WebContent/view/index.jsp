@@ -466,9 +466,7 @@ window.addEventListener("offline" , function()
         </div>
         <div class="num" id="num_5">
             <div class="cust">
-                <div class="title cust-title width_1000">
-                    <img src="./images/cust.png" alt="" />
-                </div>
+                
                 <div class="pic-cont">
                     <!-- <div id="teach" class="mr_frbox ml_frbox">
                       <img class="mr_frBtnL prev" src="./images/prev.png">
@@ -832,3 +830,4 @@ window.addEventListener("offline" , function()
 
 </body>
 </html>
+<% coop.close();%>

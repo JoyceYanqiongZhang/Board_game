@@ -7,6 +7,7 @@ import basic_class.*;
 
 public class Insert_operation {
 	java.sql.Connection con;
+	PreparedStatement st;
 	
 	public Insert_operation() {
 		con = new Connect_database().get_con();
@@ -15,7 +16,6 @@ public class Insert_operation {
 		
 	public boolean insert_to_user(Users user) {
 		String sql="INSERT INTO `board_game`.`user` (`username`, `password`, `email`, `gender`, `location`, `date_of_birth`, `is_manager`, `pic`, `is_blocked`, `wins`, `played`, `recover_question`, `recover_answer`, `is_online`) VALUES ('"+ user.get_username()+ "','"+ user.get_password()+ "','" +user.get_email()+ "','" +user.get_gender()+ "','" +user.get_location()+ "'," +user.get_date_of_birth()+ ",'" +user.get_is_manager()+ "','" +user.get_pic()+ "','" +user.get_is_blocked()+ "','" +user.get_wins()+ "','" +user.get_played()+ "','" +user.get_recover_question()+ "','" +user.get_recover_answer()+ "','" + user.get_is_online() + "')";
-		PreparedStatement st;
 		boolean success = true;
 		try {
 			System.out.println(sql);
@@ -37,7 +37,6 @@ public class Insert_operation {
 	
 	public boolean insert_to_game(Games game) {
 		String sql="INSERT INTO `board_game`.`game` (`name`,`play_min`,`play_max`,`rules`,`description`,`pic`) VALUES ('"+ game.get_name()+ "','"+ game.get_player_min()+ "','" +game.get_player_max()+ "','" +game.get_rules()+ "','" +game.get_description()+ "'," +game.get_pic()+ "')";
-		PreparedStatement st;
 		boolean success = true;
 		try {
 			System.out.println(sql);
@@ -59,7 +58,6 @@ public class Insert_operation {
 	
 	public String insert_to_room(Room room) {
 		String sql="INSERT INTO `board_game`.`room` (`game_id`,`size`,`is_blocked`,`host_id`,`is_public`,`room_log`) VALUES ('"+ room.get_game_id()+ "','"+ room.get_size()+ "','" +room.get_is_blocked()+ "','" +room.get_host_id()+ "','" +room.get_is_public()+ "','" +room.get_room_log()+ "');";
-		PreparedStatement st;
 		//String result = "";
 		Serializable ret = null;
 		try {
@@ -103,7 +101,6 @@ public class Insert_operation {
 	
 	public boolean insert_to_comment(Comment comment) {
 		String sql="INSERT INTO `board_game`.`comment` (`postby_id`,`game_id`,`content`,`replyto_id`,`time`) VALUES ('"+ comment.get_postby_id()+ "','"+ comment.get_game_id()+ "','" +comment.get_content()+ "','" +comment.get_replyto_id()+ "','" +comment.get_time()+ "')";
-		PreparedStatement st;
 		boolean success = true;
 		try {
 			System.out.println(sql);
@@ -125,7 +122,6 @@ public class Insert_operation {
 	
 	public boolean insert_to_game_record(Game_record game_record) {
 		String sql="INSERT INTO `board_game`.`game_record` (`room_id`,`win_id`,`date`) VALUES ('"+ game_record.get_game_id()+ "','"+ game_record.get_win_id()+ "',CURRENT_DATE)";
-		PreparedStatement st;
 		boolean success = true;
 		try {
 			System.out.println(sql);
@@ -147,7 +143,6 @@ public class Insert_operation {
 	
 	public boolean insert_to_messege(Messege messege) {
 		String sql="INSERT INTO `board_game`.`messege` (`postby_id`,`room_id`,`time`) VALUES ('"+ messege.get_postby_id()+ "','"+ messege.get_room_id()+ "','" +messege.get_time()+ "')";
-		PreparedStatement st;
 		boolean success = true;
 		try {
 			System.out.println(sql);
@@ -169,7 +164,6 @@ public class Insert_operation {
 	
 	public boolean insert_to_report(Report report) {
 		String sql="INSERT INTO `board_game`.`report` (`by_id`,`content`,`condition`) VALUES ('"+ report.get_by_id()+ "','"+ report.get_content()+ "','" +report.get_condition()+ "')";
-		PreparedStatement st;
 		boolean success = true;
 		try {
 			System.out.println(sql);
@@ -197,7 +191,6 @@ public class Insert_operation {
 			sql="INSERT INTO `board_game`.`" + table + "` (`" +relationship.get_name1() +"`,`" + relationship.get_name2() + "`) VALUES ('"+ relationship.get_id1() + "','"+ relationship.get_id2() + "')";
 
 		}
-		PreparedStatement st;
 		boolean success = true;
 		try {
 			System.out.println(sql);
@@ -215,6 +208,17 @@ public class Insert_operation {
 			return success;
 		}
 	
+	}
+	
+	public void close() {
+		try {
+			st.close();
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 	

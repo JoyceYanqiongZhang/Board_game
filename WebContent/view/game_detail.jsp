@@ -49,4 +49,5 @@
 	</div>
 
 </div>
+<%coop.close(); %>
 <%@ include file="footer.jsp"%>

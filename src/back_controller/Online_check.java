@@ -39,6 +39,7 @@ public class Online_check extends HttpServlet {
         String offline_id = request.getParameter("id");
         Common_operation coop = new Common_operation();
         coop.update_by_on("id", "user", offline_id , "is_online", "0");
+        coop.close();
         
         
         //out.println();

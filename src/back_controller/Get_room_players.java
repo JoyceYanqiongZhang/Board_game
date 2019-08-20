@@ -18,16 +18,16 @@ import basic_class.*;
 import model.*;
 
 /**
- * Servlet implementation class Get_room_log
+ * Servlet implementation class Get_room_players
  */
-@WebServlet("/Get_room_log")
-public class Get_room_log extends HttpServlet {
+@WebServlet("/Get_room_players")
+public class Get_room_players extends HttpServlet {
     private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Get_room_log() {
+    public Get_room_players() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,13 +41,29 @@ public class Get_room_log extends HttpServlet {
     	Common_operation coop = new Common_operation();
     	
         String room_id = request.getParameter("room_id");
-        String room_log = coop.get_by_from("room_log", "id", "room", room_id).get(0).get(0);
-        //System.out.println(room_log);
+        ArrayList<ArrayList<String>> room_player_re = coop.get_by_from("*", "room_id", "room_players", room_id);
+        ArrayList<String> player_ids = new ArrayList<String>();
+        for(int i=0;i<room_player_re.size();i++) {
+        	player_ids.add(room_player_re.get(i).get(1));
+        }
+        JSONObject player_set = new JSONObject();        
+        for(int i=0; i<player_ids.size(); i++) {
+            
+            try {
+				player_set.put("player" + i, coop.get_by_from("*", "id", "user", player_ids.get(i)).get(0));
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+        }
+        
+        System.out.println(player_set.toString());
    	 response.setCharacterEncoding("UTF-8");
    	
    	 coop.close();
      PrintWriter out = response.getWriter();
-     out.write(room_log);
+     out.write(player_set.toString());
      out.println();
      out.flush();
         

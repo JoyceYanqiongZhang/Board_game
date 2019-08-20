@@ -177,7 +177,7 @@ function non_host_do(){
 	var user_name = document.getElementById("user_name").value;
 	var is_full = check_room_full(room_id);
 	
-	 alert(is_full);
+	 //alert(is_full);
 	 //alert(user_id);
 	
 	if(is_full == "N"){
@@ -211,6 +211,7 @@ function non_host_do(){
 function host_do(){
 	var room_id = document.getElementById("room_id").value;
 	var user_id = document.getElementById("user_id").value;
+	var user_name = document.getElementById("user_name").value;
 	var is_full = check_room_full(room_id);
 
 	if(is_full == "Y"){
@@ -231,6 +232,10 @@ function host_do(){
 	        }
 	          
 	    })
+	    
+	    var add_room_log = user_name + " started the game <br>" + user_name +"go first<br>";
+		update_room_log(add_room_log);
+	    
 	}else{
 		alert("This room is not full yet! Please wait for other players to join in!");
 	}
@@ -242,6 +247,7 @@ function load(click_button){
 		document.getElementById(click_button).click();
 
 	}
+	
 }
 
 function check_room_full(room_id){
@@ -267,12 +273,25 @@ function check_room_full(room_id){
     return is_full;
 }
 
-function load_room_log(){
-	var timer = window.setInterval('refresh_room_log()',100);
+function load_refresh(){
+	
+	//refresh room log
+	var room_log_tag = document.getElementById("room_log_content");
+	//alert(room_log_tag != null);
+	if(room_log_tag != null){
+		var timer = window.setInterval('refresh_room_log()',100);
+	}
+	
+	//refresh player vacancy
+	var room_players_container = document.getElementById("room_players_container");
+	if(room_players_container != null){
+		var timer = window.setInterval('refresh_room_players_container()',100);
+	}
 }
 
 function refresh_room_log(){
-	var room_id = document.getElementById("room_id");
+	var room_id = document.getElementById("room_id").value;
+	//alert("refresh room log");
 	var room_log;
 	
 	$.ajax({
@@ -285,8 +304,9 @@ function refresh_room_log(){
         		},
         dataType:'text',
         success:function(result){
-        	room_log = result[0];
         	
+        	room_log = result;
+        	//alert(room_log);
         	
         }
           
@@ -295,9 +315,41 @@ function refresh_room_log(){
 	
 }
 
+function refresh_room_players_container(){
+	var room_id = document.getElementById("room_id").value;
+	//alert("123");
+	$.ajax({
+
+        url:"http://localhost:8080/BoardGamePlatform/back_controller/Get_room_players.do",
+        async : false,
+        type:"post",
+        data:{
+        		"room_id": room_id
+        		},
+        dataType:'json',
+        success:function(result){
+        	
+        	//alert("success");
+        	var i = 0;
+        	while(result["player"+i] != null){
+        		var player_img = document.getElementById("vacancy_img"+i);
+        		var player_p = document.getElementById("vacancy_p"+i);
+        		player_img.src = result["player"+i][8];
+        		player_p.innerHTML = result["player"+i][1];
+        		//alert(result["player"+i][0]);
+        		i++;
+        	}
+
+        	
+        }
+          
+    })
+	
+}
+
 function update_room_log(add_room_log){
-	var room_id = document.getElementById("room_id");
-	alert("js update function invoked");
+	var room_id = document.getElementById("room_id").value;
+	//alert(add_room_log);
 	
 	$.ajax({
 
@@ -315,4 +367,34 @@ function update_room_log(add_room_log){
         }
           
     })
+}
+
+function leave_room(){
+	var room_id = document.getElementById("room_id").value;
+	var user_id = document.getElementById("user_id").value;
+	var user_name = document.getElementById("user_name").value;
+	
+		$.ajax({
+	
+	        url:"http://localhost:8080/BoardGamePlatform/back_controller/Delete_relationship.do",
+	        async : false,
+	        type:"post",
+	        data:{
+	        		"table" : "room_players",
+	        		"name1" : "room_id",
+	        		"name2": "player_id",
+	        		"int1": room_id,
+	        		"int2": user_id
+	        		},
+	        dataType:'text',
+	        success:function(result){
+	        	
+	        }
+	          
+	    })
+	    var add_room_log = user_name + "left this room<br>";
+		update_room_log(add_room_log);
+	    window.location.href="http://localhost:8080/BoardGamePlatform/view/index.jsp?c=nav_num3";
+
+
 }

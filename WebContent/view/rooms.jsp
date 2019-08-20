@@ -27,6 +27,5 @@ for(int i=0;i<room_set.size();i++){
 } %>
 </table>
 
-
-</body>
-</html>
+<%coop.close(); %>
+<%@ include file="footer.jsp"%>

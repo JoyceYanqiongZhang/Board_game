@@ -1,10 +1,19 @@
 <%@ include file="head.jsp"%>
-<% String player_num = request.getParameter("role");
+<% 
+	Common_operation coop = new Common_operation();
+	String player_num = request.getParameter("role");
 	String room_id = request.getParameter("rid");
+	ArrayList<String> room_info = coop.get_by_from("*", "id", "room", room_id).get(0);
 
 %>
 <div class="outter1">
-    <canvas id="canvas" width="400" height="400"></canvas>
+	<div class="line_70_div">
+    	<canvas id="canvas" width="400" height="400"></canvas>
+    </div>
+    <div class="line_30_div" id="room_log_div" onload="load_room_log();">
+		<h3>Room Log</h3>
+		<p id="room_log_content"><% out.println(room_info.get(6)); %></p>
+	</div>
     <input type="hidden" name="room_id" id="room_id" value="<% out.println(room_id); %>">
     <input type="hidden" name="player_num" id="player_num" value="<% out.println(player_num); %>">
  
@@ -153,6 +162,7 @@
             let hs = tileArray[7].state;
             let is = tileArray[8].state;
             let current_user_id = document.getElementById("user_id").value;
+            let current_user_name = document.getElementById("user_name").value;
             let room_id = document.getElementById("room_id").value;
 
  
@@ -179,6 +189,9 @@
 			        }
 			          
 			    })
+			    
+			    var add_room_log = current_user_name + "wins!";
+              	update_room_log(add_room_log);
                 
             } else if (equals([as, bs, cs], opp_icon) || equals([ds, es, fs], opp_icon) || equals([gs, hs, is], opp_icon) ||
                 equals([as, ds, gs], opp_icon) || equals([bs, es, hs], opp_icon) || equals([cs, fs, is], opp_icon) ||
@@ -207,6 +220,8 @@
     			        }
     			          
     			    })
+    			    var add_room_log = "It's a tie. No winner."
+    			    update_room_log(add_room_log);
                 }
             }
         }
@@ -573,6 +588,7 @@
     </script>
     
 </div>
+<%coop.close(); %>
 <%@ include file="footer.jsp"%>
 
  
