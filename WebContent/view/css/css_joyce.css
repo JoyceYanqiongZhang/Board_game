@@ -3,6 +3,7 @@
 img{
 	max-width: 100%;
 	max-height: 100%;
+	width: 70%;
 }
 
 th{
@@ -33,6 +34,21 @@ th{
 .vertical_100{
 	float: left;
 	width: 100%;
+}
+.vertical_100_100{
+	float: left;
+	width: 100%;
+	height: 100%;
+}
+.vertical_100_70{
+	float: left;
+	width: 100%;
+	height: 70%;
+}
+.vertical_100_30{
+	float: left;
+	width: 100%;
+	height: 30%;
 }
 
 .line_40_div{
@@ -96,5 +112,9 @@ th{
 }
 
 #game_info{
+	margin-top: 5%;
+}
+
+#player_info{
 	margin-top: 5%;
 }

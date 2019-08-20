@@ -7,7 +7,7 @@ import basic_class.*;
 
 public class Insert_operation {
 	java.sql.Connection con;
-	PreparedStatement st;
+	PreparedStatement st ;
 	
 	public Insert_operation() {
 		con = new Connect_database().get_con();
@@ -21,8 +21,7 @@ public class Insert_operation {
 			System.out.println(sql);
 			st = con.prepareStatement(sql);
 			st.execute();
-			st.close();
-			con.close();
+			
 			System.out.println(sql);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -42,8 +41,7 @@ public class Insert_operation {
 			System.out.println(sql);
 			st = con.prepareStatement(sql);
 			st.execute();
-			st.close();
-			con.close();
+			
 			System.out.println(sql);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -106,8 +104,7 @@ public class Insert_operation {
 			System.out.println(sql);
 			st = con.prepareStatement(sql);
 			st.execute();
-			st.close();
-			con.close();
+			
 			System.out.println(sql);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -127,8 +124,7 @@ public class Insert_operation {
 			System.out.println(sql);
 			st = con.prepareStatement(sql);
 			st.execute();
-			st.close();
-			con.close();
+			
 			System.out.println(sql);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -148,8 +144,7 @@ public class Insert_operation {
 			System.out.println(sql);
 			st = con.prepareStatement(sql);
 			st.execute();
-			st.close();
-			con.close();
+			
 			System.out.println(sql);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -169,8 +164,7 @@ public class Insert_operation {
 			System.out.println(sql);
 			st = con.prepareStatement(sql);
 			st.execute();
-			st.close();
-			con.close();
+			
 			System.out.println(sql);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -196,8 +190,7 @@ public class Insert_operation {
 			System.out.println(sql);
 			st = con.prepareStatement(sql);
 			st.execute();
-			st.close();
-			con.close();
+			
 			System.out.println(sql);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -212,7 +205,7 @@ public class Insert_operation {
 	
 	public void close() {
 		try {
-			st.close();
+			//st.close();
 			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

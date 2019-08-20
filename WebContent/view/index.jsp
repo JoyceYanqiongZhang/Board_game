@@ -16,11 +16,13 @@
     <title>Board Game Platform</title>
     <meta name="keywords" content="" />
     <meta name="description" content="" />
-    <link href="css/css.css" rel="stylesheet" type="text/css" />
-    <script src="js/jquery-1.8.2.min.js"></script>
-    <script src="js/switch.js"></script>
-    <script src="js/js.js"></script>
-    <script src="general_script.js"></script>
+    <link href="http://localhost:8080/BoardGamePlatform/view/css/css.css" rel="stylesheet" type="text/css" />
+    <link href="http://localhost:8080/BoardGamePlatform/view/css/css_joyce.css" rel="stylesheet" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="http://localhost:8080/BoardGamePlatform/view/js/jquery-1.8.2.min.js"></script>
+    <script src="http://localhost:8080/BoardGamePlatform/view/js/switch.js"></script>
+    <script src="http://localhost:8080/BoardGamePlatform/view/js/js.js"></script>
+    <script src="http://localhost:8080/BoardGamePlatform/view/general_script.js"></script>
     <style>
         html {
             overflow: hidden;
@@ -55,7 +57,7 @@ window.addEventListener("offline" , function()
             <li><a href="index.jsp" class="active">Home<br /><span>Home</span></a></li>
         	<li class="nav_num4" id="nav_num4"><a>Game<br /><span>Game</span></a></li>
         	<li class="nav_num3" id="nav_num3"><a>Room<br /><span>Room</span></a></li>
-        	<li class="nav_num5" id="nav_num5"><a  href="http://localhost:8080/BoardGamePlatform/back_controller/ShowServlet">Players<br /><span>Players</span></a></li>
+        	<li class="nav_num5" id="nav_num5"><a>Players<br /><span>Players</span></a></li>
             <li class="nav_num2" id="nav_num2"><a>Leaderboard<br /><span>Leaderboard</span></a></li>
             <li class="nav_num6" id="nav_num6"><a>My Account<br /><span>My Account</span></a></li>
         </ul>
@@ -95,7 +97,7 @@ window.addEventListener("offline" , function()
             <li><a href="index.jsp" class="active">Home<br /><span>Home</span></a></li>
         	<li class="nav_num4"><a>Game<br /><span>Game</span></a></li>
         	<li class="nav_num3"><a>Room<br /><span>Room</span></a></li>
-        	<li class="nav_num5"><a href="http://localhost:8080/BoardGamePlatform/back_controller/ShowServlet">Players<br /><span>Players</span></a></li>
+        	<li class="nav_num5"><a>Players<br /><span>Players</span></a></li>
             <li class="nav_num2"><a>Leaderboard<br /><span>Leaderboard</span></a></li>
             <li class="nav_num6"><a>My Account<br /><span>My Account</span></a></li>
         </ul>
@@ -465,262 +467,62 @@ window.addEventListener("offline" , function()
             </div>
         </div>
         <div class="num" id="num_5">
-            <div class="cust">
+        <div class="outter1">
+        <div class="vertical_100">
+        	<button onclick="window.location.href='http://localhost:8080/BoardGamePlatform/back_controller/ShowServlet'">All Online Players</button>
+        </div>
+            <div class="cust" style="float:left">
                 
                 <div class="pic-cont">
-                    <!-- <div id="teach" class="mr_frbox ml_frbox">
-                      <img class="mr_frBtnL prev" src="./images/prev.png">
-                      <div class="mr_frUl">
-                        <ul>
-                          <li>
-                            <img src="./images/cust1.jpg" alt="" />
-                            <img src="./images/cust2.jpg" alt="" />
-                            <img src="./images/cust3.jpg" alt="" />
-                          </li>
-                          <li>
-                            <img src="./images/cust4.jpg" alt="" />
-                            <img src="./images/cust5.jpg" alt="" />
-                            <img src="./images/cust6.jpg" alt="" />
-                          </li>
-                          <li>
-                            <img src="./images/cust7.jpg" alt="" />
-                            <img src="./images/cust8.jpg" alt="" />
-                            <img src="./images/cust9.jpg" alt="" />
-                          </li>
-                          <li>
-                            <img src="./images/cust10.jpg" alt="" />
-                            <img src="./images/cust11.jpg" alt="" />
-                            <img src="./images/cust12.jpg" alt="" />
-                          </li>
-                          <li>
-                            <img src="./images/cust13.jpg" alt="" />
-                            <img src="./images/cust14.jpg" alt="" />
-                            <img src="./images/cust15.jpg" alt="" />
-                          </li>
-                        </ul>
-                        </div>
-                        <img class="mr_frBtnR next" src="./images/next.png">
-                    </div> -->
+                    
                     <div class="v_out v_out_p">
-                        <div class="prev"><a href="javascript:void(0)"></a></div>
+                        
                         <div class="v_show">
                             <div class="v_cont">
                                 <ul>
                                     <li>
                                         <div>
-                                            <span>
-                                                <img src="./images/logo.jpg" alt="" />
-                                            </span>
-                                            <span>
-                                                <img src="./images/logo2.jpg" alt="" />
-                                            </span>
-                                            <span>
-                                                <img src="./images/logo3.jpg" alt="" />
-                                            </span>
-                                            <span>
-                                                <img src="./images/logo4.jpg" alt="" />
-                                            </span>
-                                            <span>
-                                                <img src="./images/logo5.jpg" alt="" />
-                                            </span>
-                                        </div>
-                                        <div>
-                                            <span>
-                                                <img src="./images/logo6.jpg" alt="" />
-                                            </span>
-                                            <span>
-                                                <img src="./images/logo7.jpg" alt="" />
-                                            </span>
-                                            <span>
-                                                <img src="./images/logo8.jpg" alt="" />
-                                            </span>
-                                            <span>
-                                                <img src="./images/logo9.jpg" alt="" />
-                                            </span>
-                                            <span>
-                                                <img src="./images/logo10.jpg" alt="" />
-                                            </span>
-                                        </div>
+                                        	<% 
+                                        	//get friend set
+                                        	ArrayList<String> friend_id_set = new ArrayList<String>();
+                                        	ArrayList<ArrayList<String>> friendship_set1 = coop.get_by_from("*", "player1_id", "friendship", String.valueOf(session.getAttribute("user_id")) );
+                                        	for(int i=0;i<friendship_set1.size();i++){
+                                        		friend_id_set.add(friendship_set1.get(i).get(1));
+                                        	}
+                                        	System.out.println(friendship_set1);
+                                        	ArrayList<ArrayList<String>> friendship_set2 = coop.get_by_from("*", "player2_id", "friendship", String.valueOf(session.getAttribute("user_id")) );
+                                        	for(int i=0;i<friendship_set2.size();i++){
+                                        		friend_id_set.add(friendship_set2.get(i).get(0));
+                                        	}
+                                        	System.out.println(friendship_set2);
+                                        	System.out.println(friend_id_set);
+                                        	ArrayList<ArrayList<String>> friend_set = new ArrayList<ArrayList<String>>();
+                                        	for(int i=0;i<friend_id_set.size();i++){
+                                        		friend_set.add(coop.get_by_from("*", "id", "user", friend_id_set.get(i) ).get(0) );
+                                        	}
+                                        	
+                                        	
+                                        	for(int i=0;i<friend_set.size();i++){
+                                        		out.println("<a href='player_detail.jsp?u=" + friend_set.get(i).get(0) + "'><span><div class='vertical_100'><img src='"+ friend_set.get(i).get(8) +"' alt='' /></div><div class='vertical_100'><h3>" + friend_set.get(i).get(1) + "</h3></div></span></a>");
+                                        	}
+                                        	//  href="http://localhost:8080/BoardGamePlatform/back_controller/ShowServlet"	
+                                        	//out.println("<tr><td>" + friend_set.get(i).get(0) + "</td><td>" + friend_set.get(i).get(1) + "</td><td>" + friend_set.get(i).get(4) + "</td><td>" + friend_set.get(i).get(5) + "</td><td>" + friend_set.get(i).get(8) + "</td></tr>");
+                                        	%>
+                                           </div> 
+                                      
                                     </li>
-                                    <li>
-                                        <div>
-                                            <span>
-                                                <img src="./images/logo11.jpg" alt="" />
-                                            </span>
-                                            <span>
-                                                <img src="./images/logo12.jpg" alt="" />
-                                            </span>
-                                            <span>
-                                                <img src="./images/logo13.jpg" alt="" />
-                                            </span>
-                                            <span>
-                                                <img src="./images/logo14.jpg" alt="" />
-                                            </span>
-                                            <span>
-                                                <img src="./images/logo15.jpg" alt="" />
-                                            </span>
-                                        </div>
-                                        <div>
-                                            <span>
-                                                <img src="./images/logo16.jpg" alt="" />
-                                            </span>
-                                            <span>
-                                                <img src="./images/logo17.jpg" alt="" />
-                                            </span>
-                                            <span>
-                                                <img src="./images/logo18.jpg" alt="" />
-                                            </span>
-                                            <span>
-                                                <img src="./images/logo19.jpg" alt="" />
-                                            </span>
-                                            <span>
-                                                <img src="./images/logo20.jpg" alt="" />
-                                            </span>
-                                        </div>
-                                    </li>
+                                    
                                 </ul>
                             </div>
-                            <script type="text/javascript" src="js/gundong.js"></script>
-                            <script language="javascript">
-                                jQuery(".ml_frbox").slide({ titCell: "", mainCell: ".mr_frUl ul", autoPage: true, effect: "leftLoop", autoPlay: true, vis: 5 });
-                                // $('.pic-cont ul li span').hover(function(){
-                                //   $(this).children().first().hide().siblings().show();
-                                // },function(){
-                                //   $(this).children().first().show().siblings().hide();
-                                // })
-                            </script>
-                            <div class="v_cont1">
-                                <ul>
-                                    <li>
-                                        <div>
-                                            <span>
-                                                <img src="./images/logo.jpg" alt="" />
-                                            </span>
-                                        </div>
-                                        <div>
-                                            <span>
-                                                <img src="./images/logo2.jpg" alt="" />
-                                            </span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <span>
-                                                <img src="./images/logo3.jpg" alt="" />
-                                            </span>
-                                        </div>
-                                        <div>
-                                            <span>
-                                                <img src="./images/logo4.jpg" alt="" />
-                                            </span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <span>
-                                                <img src="./images/logo5.jpg" alt="" />
-                                            </span>
-                                        </div>
-                                        <div>
-                                            <span>
-                                                <img src="./images/logo6.jpg" alt="" />
-                                            </span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <span>
-                                                <img src="./images/logo7.jpg" alt="" />
-                                            </span>
-                                        </div>
-                                        <div>
-                                            <span>
-                                                <img src="./images/logo8.jpg" alt="" />
-                                            </span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <span>
-                                                <img src="./images/logo9.jpg" alt="" />
-                                            </span>
-                                        </div>
-                                        <div>
-                                            <span>
-                                                <img src="./images/logo10.jpg" alt="" />
-                                            </span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <span>
-                                                <img src="./images/logo11.jpg" alt="" />
-                                            </span>
-                                        </div>
-                                        <div>
-                                            <span>
-                                                <img src="./images/logo12.jpg" alt="" />
-                                            </span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <span>
-                                                <img src="./images/logo13.jpg" alt="" />
-                                            </span>
-                                        </div>
-                                        <div>
-                                            <span>
-                                                <img src="./images/logo14.jpg" alt="" />
-                                            </span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <span>
-                                                <img src="./images/logo15.jpg" alt="" />
-                                            </span>
-                                        </div>
-                                        <div>
-                                            <span>
-                                                <img src="./images/logo16.jpg" alt="" />
-                                            </span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <span>
-                                                <img src="./images/logo17.jpg" alt="" />
-                                            </span>
-                                        </div>
-                                        <div>
-                                            <span>
-                                                <img src="./images/logo18.jpg" alt="" />
-                                            </span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <span>
-                                                <img src="./images/logo19.jpg" alt="" />
-                                            </span>
-                                        </div>
-                                        <div>
-                                            <span>
-                                                <img src="./images/logo20.jpg" alt="" />
-                                            </span>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <script type="text/javascript" src="js/gundong1.js"></script>
-                            <script language="javascript">
-                                jQuery(".ml_frbox").slide({ titCell: "", mainCell: ".mr_frUl ul", autoPage: true, effect: "leftLoop", autoPlay: true, vis: 5 });
-                            </script>
+                            
+                            
+                            
+                            
                         </div>
-                        <div class="next"><a href="javascript:void(0)"></a> </div>
+                       
                     </div>
                 </div>
+            </div>
             </div>
         </div>
 

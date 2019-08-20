@@ -398,3 +398,85 @@ function leave_room(){
 
 
 }
+
+function add_friend(friend_id){
+	var current_user_id = document.getElementById("user_id").value;
+	alert(typeof friend_id);
+	alert(typeof current_user_id);
+	alert(friend_id.length);
+	alert(current_user_id[0]);
+	alert(current_user_id[1]);
+	alert(current_user_id[2]);
+	
+	//console.log(typeof friend_id);
+	alert(friend_id == current_user_id);
+	if(friend_id == current_user_id){
+		alert("You cannot add yourself as your friend!");
+	}else{
+		$.ajax({
+			
+	        url:"http://localhost:8080/BoardGamePlatform/back_controller/Create_relationship.do",
+	        async : false,
+	        type:"post",
+	        data:{
+	        		"table" : "friendship",
+	        		"name1" : "player1_id",
+	        		"name2": "player2_id",
+	        		"int1": current_user_id,
+	        		"int2": friend_id
+	        		},
+	        dataType:'text',
+	        success:function(result){
+	        	alert("You are friends with this user now!!");
+	        	window.location.reload();
+	        }
+	          
+	    })
+	}
+}
+
+function delete_friend(place,friend_id){
+	var current_user_id = document.getElementById("user_id").value;
+	if(place == "1"){
+		$.ajax({
+			
+	        url:"http://localhost:8080/BoardGamePlatform/back_controller/Delete_relationship.do",
+	        async : false,
+	        type:"post",
+	        data:{
+	        	"table" : "friendship",
+	    		"name1" : "player1_id",
+	    		"name2": "player2_id",
+	    		"int1": current_user_id,
+	    		"int2": friend_id
+	        		},
+	        dataType:'text',
+	        success:function(result){
+	        	alert("You are no longer friends with this user now!!");
+	        	window.location.reload();
+	        }
+	          
+	    })
+	}else if(place == "2"){
+		$.ajax({
+			
+	        url:"http://localhost:8080/BoardGamePlatform/back_controller/Delete_relationship.do",
+	        async : false,
+	        type:"post",
+	        data:{
+	        	"table" : "friendship",
+	    		"name1" : "player1_id",
+	    		"name2": "player2_id",
+	    		"int1": friend_id,
+	    		"int2": current_user_id
+	        		},
+	        dataType:'text',
+	        success:function(result){
+	        	alert("You are no longer friends with this user now!!");
+	        	window.location.reload();
+	        }
+	          
+	    })
+	}
+	
+}

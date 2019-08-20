@@ -50,7 +50,7 @@ window.addEventListener("offline" , function()
 
 </script>
 
-<input type="hidden" id="hidden_user_id" name= "hidden_user_id" value="<% out.println(session.getAttribute("id")); %>">
+<input type="hidden" id="hidden_user_id" name= "hidden_user_id" value="<% out.println(session.getAttribute("user_id")); %>">
 <div class="vertical_100">
     <div class="head">
         

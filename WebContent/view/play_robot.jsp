@@ -1,7 +1,5 @@
 <%@ include file="head.jsp"%>
-<% Common_operation coop = new Common_operation();
-	Insert_operation inop = new Insert_operation();
-	%>
+
 <div class="outter1">
     <canvas id="canvas" width="400" height="400"></canvas>
  
@@ -473,8 +471,6 @@
         }
     </script>
 </div>
-<% coop.close();
-inop.close();
-%>
+
 <%@ include file="footer.jsp"%>
  
