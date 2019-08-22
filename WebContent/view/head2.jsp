@@ -1,6 +1,7 @@
 
 </head>
-<body class="page_body" onload = "load_refresh()">
+<% String click_button = request.getParameter("c"); %>
+<body class="page_body" onload = "load_refresh('<% out.print(click_button);%>')">
 <div class="the_page">
 
 <input type="hidden" id="user_id" name= "user_id"value="<% out.print(session.getAttribute("user_id")); %>">
@@ -24,6 +25,7 @@ window.addEventListener("offline" , function()
 
 </script>
 
+
 <input type="hidden" id="hidden_user_id" name= "hidden_user_id" value="<% out.print(session.getAttribute("user_id")); %>">
 <div class="vertical_100">
     <div class="head" id="head_page">
@@ -43,20 +45,20 @@ window.addEventListener("offline" , function()
         </ul>
         <div class="hotline">
             <span>Hi, <% if(session.getAttribute("username") != null)
-            {out.println(session.getAttribute("username"));}
-            else{out.println("Visitor");}
+            {out.print(session.getAttribute("username"));}
+            else{out.print("Visitor");}
             %></span>
             <span style="display : <% if(session.getAttribute("username") != null){
-					out.println("none");
+					out.print("none");
 				}else{
-					out.println("block");
+					out.print("block");
 				}
 				%>"><p><a href="http://localhost:8080/BoardGamePlatform/view/login.jsp">Login</a> | <a href="http://localhost:8080/BoardGamePlatform/view/register.jsp">Sign up</a></p></span>
 				
 				<span style="display : <% if(session.getAttribute("username") != null){
-					out.println("block");
+					out.print("block");
 				}else{
-					out.println("none");
+					out.print("none");
 				}
 				%>"><p><a href="logout.jsp">Logout</a></p></span>
         </div>

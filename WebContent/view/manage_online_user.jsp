@@ -4,7 +4,7 @@
 <% 
 List<Map<String,Object>> online_user_set = new ArrayList<Map<String,Object>>();
 	online_user_set = (List<Map<String,Object>>)request.getAttribute("onLines");
-	//System.out.println("online test" + online_user_set.get(0).get("creationTime"));
+	//System.out.print("online test" + online_user_set.get(0).get("creationTime"));
 %>
 <% 
 	int i=0;
@@ -36,11 +36,11 @@ List<Map<String,Object>> online_user_set = new ArrayList<Map<String,Object>>();
 	            		while(it.hasNext()){
 	            			Map<String,Object> the_user = it.next();
 	            			Users thisuser = (Users)the_user.get("current_user");
-	            			//System.out.println((String)the_user.get("creationTime"));
-	            			//out.println(it.next().get("user"));
+	            			//System.out.print((String)the_user.get("creationTime"));
+	            			//out.print(it.next().get("user"));
 	            			if(thisuser != null){
 	
-	            				out.println("<tr><td>" + thisuser.get_id() + "</td><td>" + thisuser.get_username() + "</td><td>" + the_user.get("creationTime") + "</td><td>" + the_user.get("lastAccessTime") + "</td><td>" + the_user.get("ip") + "</td></tr>");
+	            				out.print("<tr><td>" + thisuser.get_id() + "</td><td>" + thisuser.get_username() + "</td><td>" + the_user.get("creationTime") + "</td><td>" + the_user.get("lastAccessTime") + "</td><td>" + the_user.get("ip") + "</td></tr>");
 	            			}
 	            		}
 	            	}

@@ -217,6 +217,14 @@ th{
 	text-align: left !important;
 }
 
+.comment_div{
+	font-size: 20px;
+}
+
+.reply_div{
+	font-size: 15px;
+}
+
 #room_info_head p{
 	font-size : 25px;
 }

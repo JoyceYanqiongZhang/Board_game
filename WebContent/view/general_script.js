@@ -273,7 +273,13 @@ function check_room_full(room_id){
     return is_full;
 }
 
-function load_refresh(){
+function load_refresh(click_button){
+	//alert(click_button == "null");
+	if(click_button != "null"){
+		document.getElementById(click_button).click();
+
+	}
+	
 	//check if it is room detail page
 	var is_room_detail = document.getElementById("is_room_detail");
 	if(is_room_detail != null){
@@ -699,6 +705,30 @@ function delete_favorite(game_id){
         success:function(result){
         	alert("Removed from your favorite list!!");
         	window.location.reload();
+        }
+          
+    })
+}
+
+function match_room(){
+	var user_id = document.getElementById("hidden_user_id").value;
+$.ajax({
+		
+        url:"http://localhost:8080/BoardGamePlatform/back_controller/Match_room.do",
+        async : false,
+        type:"post",
+        data:{
+        	"user_id":user_id
+        	
+        		},
+        dataType:'text',
+        success:function(result){
+        	if(result == ""){
+        		alert("No room ia available for you at the time!");
+        	}else{
+            	window.location.href=result;
+        		
+        	}
         }
           
     })

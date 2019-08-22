@@ -55,6 +55,10 @@
 <servlet-name>Get_report_content</servlet-name><!--define servlet name -->
 <servlet-class>back_controller.Get_report_content</servlet-class><!--the file name that servlet is belong to -->
 </servlet>
+<servlet>
+<servlet-name>Match_room</servlet-name><!--define servlet name -->
+<servlet-class>back_controller.Match_room</servlet-class><!--the file name that servlet is belong to -->
+</servlet>
 
 
 <servlet-mapping> <!-- build the mapping between servlet and action -->
@@ -120,6 +124,11 @@
 <servlet-mapping> <!-- build the mapping between servlet and action -->
 <servlet-name>Get_report_content</servlet-name>  
 <url-pattern>/back_controller/Get_report_content.do</url-pattern>    <!-- the action -->
+</servlet-mapping>
+
+<servlet-mapping> <!-- build the mapping between servlet and action -->
+<servlet-name>Match_room</servlet-name>  
+<url-pattern>/back_controller/Match_room.do</url-pattern>    <!-- the action -->
 </servlet-mapping>
 
 

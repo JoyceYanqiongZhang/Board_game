@@ -14,15 +14,15 @@
 	String is_started = "0";
 %>
 
-<input type="hidden" id="room_id" name="room_id" value="<% out.println(room_info.get(0));%>">
+<input type="hidden" id="room_id" name="room_id" value="<% out.print(room_info.get(0));%>">
 <div class="outter1">
 	<div class="center_80">
 		<div class="inner_div">
 		<div class="line_60_div">
 			<div class="vertical_100" id="room_info_head">
-				<p>Room ID : <% out.println(room_info.get(0)); %></p>
-				<p>Room Size : <% out.println(room_info.get(2)); %></p>
-				<p>Game : <% out.println(game_name); %><button class="btn" onclick="window.location.href='game_detail.jsp?g=<% out.println(room_info.get(1)); %>'">View</button></p>
+				<p>Room ID : <% out.print(room_info.get(0)); %></p>
+				<p>Room Size : <% out.print(room_info.get(2)); %></p>
+				<p>Game : <% out.print(game_name); %><button class="btn" onclick="window.location.href='game_detail.jsp?g=<% out.print(room_info.get(1)); %>'">View</button></p>
 			</div>
 			<div class="vertical_100">
 				
@@ -30,28 +30,28 @@
 				<%
 					//for(int i=0; i<room_players_ids.size();i++){
 						//ArrayList<ArrayList<String>> user_name_pic = coop.get_by_from("username,pic", "id", "user", room_players_ids.get(i));
-						//out.println("<a href='player_detail.jsp?p=" + room_players_ids.get(i) + "'><div class='room_players_place'><img src='" + user_name_pic.get(0).get(1) + "'><p>" + user_name_pic.get(0).get(0) + "</p></div></a>");
+						//out.print("<a href='player_detail.jsp?p=" + room_players_ids.get(i) + "'><div class='room_players_place'><img src='" + user_name_pic.get(0).get(1) + "'><p>" + user_name_pic.get(0).get(0) + "</p></div></a>");
 					//}
 					int vacancy = Integer.parseInt(room_info.get(2).trim());
-					System.out.println(vacancy);
+					System.out.print(vacancy);
 					for(int i=0; i< vacancy; i++){
-						out.println("<a href=''><div class='room_players_place' id='vacncy" + i + "'><img src='images/add.png' id='vacancy_img" + i + "'><p id='vacancy_p" + i + "'>Invite Friend</p></div></a>");
+						out.print("<a href=''><div class='room_players_place' id='vacncy" + i + "'><img src='images/add.png' id='vacancy_img" + i + "'><p id='vacancy_p" + i + "'>Invite Friend</p></div></a>");
 					}
 				%>
 					
 					</div>
 					<div class="vertical_100" id="room_buttons_container">
 						<div class="line_50_div">
-							<%//System.out.println(current_user.get_id().equals(room_info.get(4)));
-							//System.out.println(session.getAttribute("username"));
+							<%//System.out.print(current_user.get_id().equals(room_info.get(4)));
+							//System.out.print(session.getAttribute("username"));
 							if(current_user == null){
-								out.println("<button onclick='let_visitor_login()' class='btn' >Take a Seat</button>");
+								out.print("<button onclick='let_visitor_login()' id='take_a_seat' class='btn' >Take a Seat</button>");
 								}else if(!(current_user.get_id().equals(room_info.get(4)))){
 									
 									
-									out.println("<button onclick='non_host_do()' class='btn' >Take a Seat</button>");
+									out.print("<button onclick='non_host_do()' id='take_a_seat' class='btn' >Take a Seat</button>");
 								}else if(current_user.get_id().equals(room_info.get(4))){
-									out.println("<button onclick='host_do()' class='btn'>Start the Game</button>");
+									out.print("<button onclick='host_do()' class='btn'>Start the Game</button>");
 		
 								}
 							
@@ -69,7 +69,7 @@
   
 			    	<div class="vertical_100_80">
 			    		<h3>Room Log & Chat Box</h3>
-						<p id="room_log_content"><% out.println(room_info.get(6)); %></p>
+						<p id="room_log_content"><% out.print(room_info.get(6)); %></p>
 			    	</div>
 			    	<div class="vertical_100_20">
 				    	<div class="form-row">
@@ -91,6 +91,7 @@
 		</div>
 	</div>
 
-<% coop.close();//inop.close(); %>
+<% System.out.print("test");
+coop.close();//inop.close(); %>
 <%@ include file="manager_bar.jsp"%>
 <%@ include file="footer.jsp"%>

@@ -51,7 +51,7 @@ window.addEventListener("offline" , function()
 
 </script>
 
-<input type="hidden" id="hidden_user_id" name= "hidden_user_id" value="<% out.println(session.getAttribute("id")); %>">
+<input type="hidden" id="hidden_user_id" name= "hidden_user_id" value="<% out.print(session.getAttribute("id")); %>">
 
     <div class="head">
         <a href="index.jsp" class="logo">
@@ -67,20 +67,20 @@ window.addEventListener("offline" , function()
         </ul>
         <div class="hotline">
             <span>Hi, <% if(session.getAttribute("username") != null)
-            {out.println(session.getAttribute("username"));}
-            else{out.println("Visitor");}
+            {out.print(session.getAttribute("username"));}
+            else{out.print("Visitor");}
             %></span>
             <span style="display : <% if(session.getAttribute("username") != null){
-					out.println("none");
+					out.print("none");
 				}else{
-					out.println("block");
+					out.print("block");
 				}
 				%>"><p><a href="login.jsp">Login</a> | <a href="register.jsp">Sign up</a></p></span>
 				
 				<span style="display : <% if(session.getAttribute("username") != null){
-					out.println("block");
+					out.print("block");
 				}else{
-					out.println("none");
+					out.print("none");
 				}
 				%>"><p><a href="logout.jsp">Logout</a></p></span>
         </div>
@@ -107,20 +107,20 @@ window.addEventListener("offline" , function()
         </ul>
         <div class="hotline">
             <span>Hi, <% if(session.getAttribute("username") != null)
-            {out.println(session.getAttribute("username"));}
-            else{out.println("Visitor");}
+            {out.print(session.getAttribute("username"));}
+            else{out.print("Visitor");}
             %></span>
             <span style="display : <% if(session.getAttribute("username") != null){
-					out.println("none");
+					out.print("none");
 				}else{
-					out.println("block");
+					out.print("block");
 				}
 				%>"><p><a href="login.jsp">Login</a> | <a href="register.jsp">Sign up</a></p></span>
 				
 				<span style="display : <% if(session.getAttribute("username") != null){
-					out.println("block");
+					out.print("block");
 				}else{
-					out.println("none");
+					out.print("none");
 				}
 				%>"><p><a href="logout.jsp">Logout</a></p></span>
         </div>
@@ -313,7 +313,7 @@ window.addEventListener("offline" , function()
 	        	}
 	        	
 	        	ArrayList<ArrayList<String>> leaderboard_set = coop.get_leaderboard(show_time, show_type);
-	        	System.out.println("leaderboard_set" + leaderboard_set.size());
+	        	System.out.print("leaderboard_set" + leaderboard_set.size());
 	        	int id_index = 1;
 	        	int stats_index = 0;
 	        	if(show_type.equals("most_rate")) {
@@ -431,12 +431,12 @@ window.addEventListener("offline" , function()
                         	
                         	for(i=0; i<game_set.size();i++){
                         		if(game_set.get(i).get(7).equals("public")){
-                            		out.println("<li><a href='game_detail.jsp?g=" + game_set.get(i).get(0) + "'><img src='" + game_set.get(i).get(6) +"' /><img src='" + game_set.get(i).get(6) +"' /></a><div><h4>" + game_set.get(i).get(1) + "</h4></div></li>");
+                            		out.print("<li><a href='game_detail.jsp?g=" + game_set.get(i).get(0) + "'><img src='" + game_set.get(i).get(6) +"' /><img src='" + game_set.get(i).get(6) +"' /></a><div><h4>" + game_set.get(i).get(1) + "</h4></div></li>");
                         		}else if(game_set.get(i).get(7).equals("blocked")){
                         			
                         		}else if(current_user != null){
                         			if(game_set.get(i).get(7).equals("premium") && current_user.get_is_premium().equals("1")){
-                                		out.println("<li><a href='game_detail.jsp?g=" + game_set.get(i).get(0) + "'><img src='" + game_set.get(i).get(6) +"' /><img src='" + game_set.get(i).get(6) +"' /></a><div><h4>" + game_set.get(i).get(1) + "</h4></div></li>");
+                                		out.print("<li><a href='game_detail.jsp?g=" + game_set.get(i).get(0) + "'><img src='" + game_set.get(i).get(6) +"' /><img src='" + game_set.get(i).get(6) +"' /></a><div><h4>" + game_set.get(i).get(1) + "</h4></div></li>");
 
                         			}
                         		}
@@ -455,30 +455,53 @@ window.addEventListener("offline" , function()
         </script>
         <div class="num" id="num_4">
 		<div class="vertical_100">
-	        <div class="center_60_center">
+	        <div class="center_80">
 	        	<div class="inner_div">
-	        	<form id="create_room" action="http://localhost:8080/BoardGamePlatform/back_controller/Create_room.do" method="post">
+	        	
 	        	<% ArrayList<ArrayList<String>> all_games = coop.get_by_from("*", "1", "game", "1"); %>
-	        			<input type="hidden" name = "hidden_user_id" id="hidden_user_id" value="<% out.println(session.getAttribute("user_id"));%>"></input>
+	        	
 	        			<div class="form-row">
-	        				<div class="form-group col-md-2">	        					
-	        					<p>Choose Game : </p>
-	       					</div>
-	        				<div class="form-group col-md-4">
-	        					<select class="form-control" name="new_room_game">
-				        			<% for(i=0;i<all_games.size();i++){
-				        					out.println("<option value='"+ all_games.get(i).get(0) +"'>"+ all_games.get(i).get(1) +"</option>");
-				        				} 
-				        			%>
-	        					</select>
-	        				</div>	        				
+	        				<form id="create_room" action="http://localhost:8080/BoardGamePlatform/back_controller/Create_room.do" method="post">
+		        				<div class="form-group col-md-5">	
+		        					<div class="form-group col-md-6">
+		        						<input type="hidden" name = "hidden_user_id" id="hidden_user_id" value="<% out.print(session.getAttribute("user_id"));%>"></input>
+		        					
+		        						<p>Choose Game : </p>
+			        					<select class="form-control" name="new_room_game">
+						        			<% for(i=0;i<all_games.size();i++){
+						        					out.print("<option value='"+ all_games.get(i).get(0) +"'>"+ all_games.get(i).get(1) +"</option>");
+						        				} 
+						        			%>
+			        					</select>
+		        					</div>  
+		        					<div class="form-group col-md-4">
+		        					<p>&nbsp</p>
+		        						<button type="submit" class="btn">Create a New Room</button>
+		        					</div>      							
+		       					</div>
+	       					</form>
+	       					<form id="search_room_form" action="http://localhost:8080/BoardGamePlatform/back_controller/Search_item.do" method="post">
+		        				<div class="form-group col-md-5">
+			        				<div class="form-group col-md-6">
+			        					<input type="hidden" name="search_item" value="room" />
+		        					<p>Search Room : </p>
+		        					<input type="text" name="search_content" id="search_room" class="form-control" />
+			        				</div>
+			        				<div class="form-group col-md-4">
+			        					<p>&nbsp</p>
+			        					<button type="submit" class="btn">Search</button>
+			        				</div>
+		        					
+		        					
+		        				</div>	
+	        				</form>        				
 	        				<div class="form-group col-md-2">
-	        					<button type="submit" class="btn">Create a New Room</button>
+	        					<p>Match a random Room : </p>
+	        					<button class="btn" onclick="<% if(current_user == null){out.print("alert('Please login or sign up first!');window.location.href='http://localhost:8080/BoardGamePlatform/view/login.jsp'");}else{out.print("match_room()");} %>" >Quick Start</button>
+	        					
 	        				</div>
 	        			</div>
 	        			<br />
-	        		
-	        	</form>
 	        	</div>
 	        </div>
 	        </div>
@@ -496,13 +519,12 @@ window.addEventListener("offline" , function()
             for(i=0; i<room_set.size();i++){
             ArrayList<ArrayList<String>> thisgame = coop1.get_by_from("name,pic", "id", "game", room_set.get(i).get(1));
             int num_of_players = total_room_player_set.get(i).size();
-            out.println("<a href='room_details.jsp?r=" + room_set.get(i).get(0) + "'><img src='" + thisgame.get(0).get(1) +"' alt='' /><div><span><h5>ROOM "+ room_set.get(i).get(0) +"</h5></span><h3>" +thisgame.get(0).get(0) + "</h3></div></a>");
+            out.print("<a href='room_details.jsp?r=" + room_set.get(i).get(0) + "'><img src='" + thisgame.get(0).get(1) +"' alt='' /><div><span><h5>ROOM "+ room_set.get(i).get(0) +"</h5></span><h3>" +thisgame.get(0).get(0) + "</h3></div></a>");
             }
             
             coop1.close();
 
             %>
- 
                 </div>
                 
             </div>
@@ -534,13 +556,13 @@ window.addEventListener("offline" , function()
                                         	for(i=0;i<friendship_set1.size();i++){
                                         		friend_id_set.add(friendship_set1.get(i).get(1));
                                         	}
-                                        	System.out.println(friendship_set1);
+                                        	System.out.print(friendship_set1);
                                         	ArrayList<ArrayList<String>> friendship_set2 = coop.get_by_from("*", "player2_id", "friendship", String.valueOf(session.getAttribute("user_id")) );
                                         	for(i=0;i<friendship_set2.size();i++){
                                         		friend_id_set.add(friendship_set2.get(i).get(0));
                                         	}
-                                        	System.out.println(friendship_set2);
-                                        	System.out.println(friend_id_set);
+                                        	System.out.print(friendship_set2);
+                                        	System.out.print(friend_id_set);
                                         	ArrayList<ArrayList<String>> friend_set = new ArrayList<ArrayList<String>>();
                                         	for(i=0;i<friend_id_set.size();i++){
                                         		friend_set.add(coop.get_by_from("*", "id", "user", friend_id_set.get(i) ).get(0) );
@@ -552,12 +574,12 @@ window.addEventListener("offline" , function()
                                         		out.print("<h3>You don't have any friends yet. Go and add some friend!</h3>");
                                         	}else{
                                         		for(i=0;i<friend_set.size();i++){
-                                            		out.println("<a href='player_detail.jsp?u=" + friend_set.get(i).get(0) + "'><span><div class='vertical_100'><img src='"+ friend_set.get(i).get(8) +"' alt='' /></div><div class='vertical_100'><h3>" + friend_set.get(i).get(1) + "</h3></div></span></a>");
+                                            		out.print("<a href='player_detail.jsp?u=" + friend_set.get(i).get(0) + "'><span><div class='vertical_100'><img src='"+ friend_set.get(i).get(8) +"' alt='' /></div><div class='vertical_100'><h3>" + friend_set.get(i).get(1) + "</h3></div></span></a>");
                                             	}
                                         	}
                                         	
                                         	//  href="http://localhost:8080/BoardGamePlatform/back_controller/ShowServlet"	
-                                        	//out.println("<tr><td>" + friend_set.get(i).get(0) + "</td><td>" + friend_set.get(i).get(1) + "</td><td>" + friend_set.get(i).get(4) + "</td><td>" + friend_set.get(i).get(5) + "</td><td>" + friend_set.get(i).get(8) + "</td></tr>");
+                                        	//out.print("<tr><td>" + friend_set.get(i).get(0) + "</td><td>" + friend_set.get(i).get(1) + "</td><td>" + friend_set.get(i).get(4) + "</td><td>" + friend_set.get(i).get(5) + "</td><td>" + friend_set.get(i).get(8) + "</td></tr>");
                                         	%>
                                            </div> 
                                       

@@ -29,7 +29,7 @@
     <div class="line_40_div" id="room_log_div" onload="load_room_log();">
 			    	<div class="vertical_100_80">
 			    		<h3>Room Log & Chat Box</h3>
-						<p id="room_log_content"><% out.println(room_info.get(6)); %></p>
+						<p id="room_log_content"><% out.print(room_info.get(6)); %></p>
 			    	</div>
 			    	<div class="vertical_100_20">
 				    	<div class="form-row">
@@ -44,8 +44,8 @@
 		
 		
 	</div>
-    <input type="hidden" name="room_id" id="room_id" value="<% out.println(room_id); %>">
-    <input type="hidden" name="player_num" id="player_num" value="<% out.println(player_num); %>">
+    <input type="hidden" name="room_id" id="room_id" value="<% out.print(room_id); %>">
+    <input type="hidden" name="player_num" id="player_num" value="<% out.print(player_num); %>">
  
     <script>
         //All helper functions

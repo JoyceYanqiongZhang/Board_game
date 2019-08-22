@@ -21,25 +21,25 @@
 			
 					
 				<div class="line_30_div" id="game_img_div">
-					<img alt="" src="<% out.println(show_user.get(8)); %>">
+					<img alt="" src="<% out.print(show_user.get(8)); %>">
 				</div>
 				<div class="line_70_div" id="player_info">
 					<table>
 						<tr>
 								<th>Player Name : </th>
-								<td><% out.println(show_user.get(1)); %></td>
+								<td><% out.print(show_user.get(1)); %></td>
 							</tr>
 							<tr>
 								<th>Gender : </th>
-								<td><% out.println(show_user.get(4)); %></td>
+								<td><% out.print(show_user.get(4)); %></td>
 							</tr>
 							<tr>
 								<th>Location : </th>
-								<td><% out.println(show_user.get(5)); %></td>
+								<td><% out.print(show_user.get(5)); %></td>
 							</tr>
 							<tr>
 								<th>Date of Birth : </th>
-								<td><% out.println(show_user.get(6)); %></td>
+								<td><% out.print(show_user.get(6)); %></td>
 							</tr>
 					</table>
 				</div>
@@ -47,12 +47,12 @@
 			<div class="vertical_100">
 			<br><br><br>
 			<%
-				System.out.println(is_friend);
+				System.out.print(is_friend);
 				if(is_friend.equals("0")){
-					out.println("<button class='btn' onclick=\"add_friend(\'"+ show_user_id +"\')\">Add Friend</button>");
+					out.print("<button class='btn' onclick=\"add_friend(\'"+ show_user_id +"\')\">Add Friend</button>");
 					
 				}else{
-					out.println("<button class='btn' onclick=\"delete_friend(\'" + is_friend + "\',\'"+ show_user_id +"\')\">Delete Friend</button>");
+					out.print("<button class='btn' onclick=\"delete_friend(\'" + is_friend + "\',\'"+ show_user_id +"\')\">Delete Friend</button>");
 				}
 			%>
 			<br><br><br><br>

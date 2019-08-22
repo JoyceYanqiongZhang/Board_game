@@ -34,7 +34,7 @@ for(int i=0;i<friend_id_set.size();i++){
 <th>pic</th>
 </tr>
 <% for(int i=0;i<friend_set.size();i++){
-	out.println("<tr><td>" + friend_set.get(i).get(0) + "</td><td>" + friend_set.get(i).get(1) + "</td><td>" + friend_set.get(i).get(4) + "</td><td>" + friend_set.get(i).get(5) + "</td><td>" + friend_set.get(i).get(8) + "</td></tr>");
+	out.print("<tr><td>" + friend_set.get(i).get(0) + "</td><td>" + friend_set.get(i).get(1) + "</td><td>" + friend_set.get(i).get(4) + "</td><td>" + friend_set.get(i).get(5) + "</td><td>" + friend_set.get(i).get(8) + "</td></tr>");
 } %>
 </table>
 </div>

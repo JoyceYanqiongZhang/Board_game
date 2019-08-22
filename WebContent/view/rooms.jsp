@@ -24,7 +24,7 @@ for(int i=0;i<room_set.size();i++){
 	for(int j=0;j<total_room_player_set.get(i).size();j++){
 		player_string = player_string + total_room_player_set.get(i).get(j).get(0) + ",<br>";
 	}
-	out.println("<tr><td>" + room_set.get(i).get(0) + "</td><td>" + room_set.get(i).get(1) + "</td><td>" + room_set.get(i).get(2) + "</td><td>" + room_set.get(i).get(4) + "</td><td>" + room_set.get(i).get(6) + "</td><td>" + player_string + "</td></tr>");
+	out.print("<tr><td>" + room_set.get(i).get(0) + "</td><td>" + room_set.get(i).get(1) + "</td><td>" + room_set.get(i).get(2) + "</td><td>" + room_set.get(i).get(4) + "</td><td>" + room_set.get(i).get(6) + "</td><td>" + player_string + "</td></tr>");
 } %>
 </table>
 
