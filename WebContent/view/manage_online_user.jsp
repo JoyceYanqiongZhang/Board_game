@@ -11,13 +11,15 @@ List<Map<String,Object>> online_user_set = new ArrayList<Map<String,Object>>();
 %>
 
 <div class="outter1">
-	<div class="vertical_100">
-		<button onclick="window.location.href='http://localhost:8080/BoardGamePlatform/view/manage_player.jsp'">Show All User Info</button>
-		<button onclick="window.location.href='http://localhost:8080/BoardGamePlatform/back_controller/ShowServlet?from=manage_online_user'">Show Online User Info</button>
-	</div>
-	<div class="center_60">
+	
+	<div class="center_90">
+	<div class="inner_div">
+		<div class="vertical_100">
+			<button class="btn" onclick="window.location.href='http://localhost:8080/BoardGamePlatform/view/manage_player.jsp'">Show All User Info</button>
+			<button class="btn" onclick="window.location.href='http://localhost:8080/BoardGamePlatform/back_controller/ShowServlet?from=manage_online_user'">Show Online User Info</button>
+		</div>
 		<div class="table_div">
-			<table class="table table-striped">
+			<table class="table table-dark">
 				<tr>
 					<th>User ID</th>
 					<th>User Name</th>
@@ -46,6 +48,7 @@ List<Map<String,Object>> online_user_set = new ArrayList<Map<String,Object>>();
 					
 				%>
 			</table>
+		</div>
 		</div>
 	</div>	
 </div>

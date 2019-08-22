@@ -199,7 +199,7 @@ function non_host_do(){
 	        }
 	          
 	    })
-	    var add_room_log = user_name + "joined this room<br>";
+	    var add_room_log = user_name + " joined this room<br>";
 		update_room_log(add_room_log);
 	    
 		var timer = window.setInterval('check_started()',100);
@@ -233,7 +233,7 @@ function host_do(){
 	          
 	    })
 	    
-	    var add_room_log = user_name + " started the game <br>" + user_name +"go first<br>";
+	    var add_room_log = user_name + " started the game <br>" + user_name +" go first<br>";
 		update_room_log(add_room_log);
 	    
 	}else{
@@ -274,6 +274,15 @@ function check_room_full(room_id){
 }
 
 function load_refresh(){
+	//check if it is room detail page
+	var is_room_detail = document.getElementById("is_room_detail");
+	if(is_room_detail != null){
+		var room_is_public = document.getElementById("room_is_public").value;
+		if(room_is_public == "0"){
+			alert("The game in this room is end. Please go to other rooms");
+			window.location.href = "http://localhost:8080/BoardGamePlatform/view/index.jsp?c=nav_num3";
+		}
+	}
 	
 	//refresh room log
 	var room_log_tag = document.getElementById("room_log_content");
@@ -287,6 +296,9 @@ function load_refresh(){
 	if(room_players_container != null){
 		var timer = window.setInterval('refresh_room_players_container()',100);
 	}
+	
+	
+	
 }
 
 function refresh_room_log(){
@@ -596,6 +608,96 @@ function add_favorite(game_id){
         dataType:'text',
         success:function(result){
         	alert("This game is in your favorite list now!!");
+        	window.location.reload();
+        }
+          
+    })
+}
+
+function exit_game(room_id,user_name){
+$.ajax({
+		
+        url:"http://localhost:8080/BoardGamePlatform/back_controller/Update_item.do",
+        async : false,
+        type:"post",
+        data:{
+        	"table" : "room",
+    		"by" : "id",
+    		"content": room_id,
+    		"item": "is_public",
+    		"update_content": "0"
+        		},
+        dataType:'text',
+        success:function(result){
+        	$.ajax({
+        		
+                url:"http://localhost:8080/BoardGamePlatform/back_controller/Update_item.do",
+                async : false,
+                type:"post",
+                data:{
+                	"table" : "room",
+            		"by" : "id",
+            		"content": room_id,
+            		"item": "is_started",
+            		"update_content": "0"
+                		},
+                dataType:'text',
+                success:function(result){
+                	var add_room_log = user_name + " ended this game.<br>"
+                	update_room_log(add_room_log);
+                	window.location.href="http://localhost:8080/BoardGamePlatform/view/index.jsp?c=nav_num3";
+                }
+                  
+            })
+        }
+          
+    })
+    
+    
+}
+
+function play_again(user_name){
+	var add_room_log = user_name + "started the game again<br>";
+	var room_id = document.getElementById("room_id").value;
+	update_room_log(add_room_log);
+	$.ajax({
+		
+        url:"http://localhost:8080/BoardGamePlatform/back_controller/Update_item.do",
+        async : false,
+        type:"post",
+        data:{
+        	"table" : "room",
+    		"by" : "id",
+    		"content": room_id,
+    		"item": "room_play",
+    		"update_content": ""
+        		},
+        dataType:'text',
+        success:function(result){
+        	window.location.reload();
+        }
+          
+    })
+	
+}
+
+function delete_favorite(game_id){
+	var user_id = document.getElementById("user_id").value;
+	$.ajax({
+		
+        url:"http://localhost:8080/BoardGamePlatform/back_controller/Delete_relationship.do",
+        async : false,
+        type:"post",
+        data:{
+        	"table" : "favorite",
+    		"name1" : "player_id",
+    		"name2": "game_id",
+    		"int1": user_id,
+    		"int2": game_id
+        		},
+        dataType:'text',
+        success:function(result){
+        	alert("Removed from your favorite list!!");
         	window.location.reload();
         }
           

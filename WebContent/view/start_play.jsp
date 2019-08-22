@@ -7,6 +7,9 @@
 	ArrayList<String> room_info = coop.get_by_from("*", "id", "room", room_id).get(0);
 
 %>
+
+<input type="hidden" id="is_room_detail" name="is_room_detail" >
+<input type="hidden" id="room_is_public" name="room_is_public" value="<% out.print(room_info.get(5)); %>" >
 <div class="outter1">
 	<div class="center_80">
 		<div class="inner_div">
@@ -16,16 +19,30 @@
     	<br><br>
     	<div class="form-row">
     		<div class="form-group col-md-6">
-    			<button class="btn" onclick="window.location.reload();">Play Again</button>
+    			<button class="btn" onclick="play_again('<% out.print(current_user.get_username()); %>')">Play Again</button>
     		</div>
     		<div class="form-group col-md-6">
-    			<button class="btn" onclick="window.location.href='http://localhost:8080/BoardGamePlatform/view/index.jsp?c=nav_num3'">Exit Game</button>
+    			<button class="btn" onclick="exit_game('<% out.print(room_id + "','" + current_user.get_username()); %>');">Exit Game</button>
     		</div>
     	</div>
     </div>
     <div class="line_40_div" id="room_log_div" onload="load_room_log();">
-		<h3>Room Log</h3>
-		<p id="room_log_content"><% out.println(room_info.get(6)); %></p>
+			    	<div class="vertical_100_80">
+			    		<h3>Room Log & Chat Box</h3>
+						<p id="room_log_content"><% out.println(room_info.get(6)); %></p>
+			    	</div>
+			    	<div class="vertical_100_20">
+				    	<div class="form-row">
+				    		<div class="form-group col-md-7">
+			    				<input class="form-control" type="text" id="message_input">	    		
+				    		</div>
+				    		<div class="form-group col-md-2">
+				    			<button class="btn" onclick="<% if(current_user != null){ out.print("update_room_log('"+ current_user.get_username() + " : ' + document.getElementById('message_input').value + '<br>');document.getElementById('message_input').value='';");}else{out.print("alert('Please login or sign up first!');window.location.href='http://localhost:8080/BoardGamePlatform/view/login.jsp'");} %>">Send</button>
+				    		</div>
+				    	</div>
+			    	</div>
+		
+		
 	</div>
     <input type="hidden" name="room_id" id="room_id" value="<% out.println(room_id); %>">
     <input type="hidden" name="player_num" id="player_num" value="<% out.println(player_num); %>">
@@ -207,7 +224,7 @@
 			          
 			    })
 			    
-			    var add_room_log = current_user_name + "wins!";
+			    var add_room_log = current_user_name + "wins!<br>";
               	update_room_log(add_room_log);
                 
             } else if (equals([as, bs, cs], opp_icon) || equals([ds, es, fs], opp_icon) || equals([gs, hs, is], opp_icon) ||

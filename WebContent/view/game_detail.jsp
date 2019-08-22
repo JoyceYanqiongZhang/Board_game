@@ -4,6 +4,13 @@
 <% String game_id = request.getParameter("g"); 
 	Common_operation coop = new Common_operation();
 	ArrayList<String> game_detail = coop.get_by_from("*", "id", "game", game_id).get(0);
+	boolean is_favorite = false;
+	if(current_user != null){
+		ArrayList<ArrayList<String>> favorite_set = coop.get_by_from_function("*", "(player_id,game_id)", "favorite", "('" + current_user.get_id() + "','" + game_id + "')");
+		if(favorite_set.size() != 0){
+			is_favorite = true;
+		}
+	}
 %>
 <div class="outter1">
 	<div class="vertical_100">
@@ -48,7 +55,8 @@
 						<button class="btn" onclick="alert('Join a room to play a game now!');window.location.href='http://localhost:8080/BoardGamePlatform/view/index.jsp?c=nav_num3'">Play With Online Players</button>
 					</div>
 					<div class="form-group col-md-4">
-						<button class="btn" onclick="<% if(current_user == null){out.print("alert('Please login or sign up first!');window.location.href='http://localhost:8080/BoardGamePlatform/view/login.jsp'");}else{out.print("add_favorite('" + game_id + "')");}%>">Add to Favorite</button>
+					<% String button_string = ""; %>
+						<button class="btn" onclick="<% if(current_user == null){out.print("alert('Please login or sign up first!');window.location.href='http://localhost:8080/BoardGamePlatform/view/login.jsp'");button_string = "Add to Favorite";}else if(!is_favorite){out.print("add_favorite('" + game_id + "')");button_string="Add to Favorite";}else{out.print("delete_favorite('" + game_id + "')");button_string = "Remove from favorite";}%>"><% out.print(button_string); %></button>
 					</div>
 				</div>
 				<br><br><br><br>

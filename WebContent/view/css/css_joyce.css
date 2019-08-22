@@ -69,6 +69,20 @@ th{
 	width: 100%;
 	height: 100%;
 }
+
+.vertical_100_20{
+	float: left;
+	width: 100%;
+	height: 18%;
+}
+
+.vertical_100_80{
+	float: left;
+	width: 100%;
+	height: 78%;
+}
+
+
 .vertical_100_70{
 	float: left;
 	width: 100%;
@@ -199,7 +213,7 @@ th{
 	width: 100%;
 }
 
-.normal_table th,td{
+.normal_table th,.normal_table td{
 	text-align: left !important;
 }
 
@@ -218,7 +232,7 @@ th{
 }
 
 #room_log_div *{
-	margin : 5%;
+	margin : 3%;
 }
 
 #game_info{

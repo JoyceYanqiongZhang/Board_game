@@ -50,7 +50,7 @@
 								button_text = "Block";
 							}
 				
-							out.print("<tr><td>"+ room_set.get(i).get(0) +"</td><td>" + game_name + "</td><td>" + room_set.get(i).get(2) + "</td><td>" + num_of_players + "</td><td>" + room_set.get(i).get(4) + "</td><td>" + host_name + "</td><td>" + condition + "</td><td>" + availability + "</td><td><button class='btn' onclick=\"window.location.href=\'http://localhost:8080/BoardGamePlatform/view/room_detail.jsp?r=" + room_set.get(i).get(0) + "\'\">View</button></td><td><button class='btn' onclick=\"change_room_block(\'" + room_set.get(i).get(0) + "\',\'" + change_to + "\' )\">" + button_text + "</button></td></tr>");
+							out.print("<tr><td>"+ room_set.get(i).get(0) +"</td><td>" + game_name + "</td><td>" + room_set.get(i).get(2) + "</td><td>" + num_of_players + "</td><td>" + room_set.get(i).get(4) + "</td><td>" + host_name + "</td><td>" + condition + "</td><td>" + availability + "</td><td><button class='btn' onclick=\"window.location.href=\'http://localhost:8080/BoardGamePlatform/view/room_details.jsp?r=" + room_set.get(i).get(0) + "\'\">View</button></td><td><button class='btn' onclick=\"change_room_block(\'" + room_set.get(i).get(0) + "\',\'" + change_to + "\' )\">" + button_text + "</button></td></tr>");
 						}
 					}
 					

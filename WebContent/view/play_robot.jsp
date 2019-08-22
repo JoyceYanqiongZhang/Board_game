@@ -4,7 +4,22 @@
 <div class="outter1">
 	<div class="center_60_center">
 		<div class="inner_div">
-    	<canvas id="canvas" width="400" height="400"></canvas>
+		<div class="vertical_100">
+    		<canvas id="canvas" width="400" height="400"></canvas>
+    		<br><br>
+    	<div class="form-row">
+    		<div class="form-group col-md-6">
+    		<button class="btn" onclick="window.location.reload();">Play Again </button>
+    		</div>
+    		<div class="form-group col-md-6">
+    		<button class="btn" onclick="window.location.href='http://localhost:8080/BoardGamePlatform/view/index.jsp?c=nav_num4';">Exit Game </button>
+    		</div>
+    	</div>
+    	</div>
+    	<div class="vertical_100">
+				<p><br></p>
+		</div>
+    	
  
     <script>
         //All helper functions

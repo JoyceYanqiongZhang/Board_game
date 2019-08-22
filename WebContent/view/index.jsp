@@ -407,9 +407,28 @@ window.addEventListener("offline" , function()
                 <div id="teach" class="mr_frbox">
                     <img class="mr_frBtnL prev" src="./images/prev.png" />
                     <div class="mr_frUl">
+                    <%
+                    	if(current_user != null){
+                    		out.print("<button class='btn' onclick=\"window.location.href=\'http://localhost:8080/BoardGamePlatform/view/index.jsp?c=nav_num4\'\">All Game List</button>  |  <button class='btn' onclick=\"window.location.href=\'http://localhost:8080/BoardGamePlatform/view/index.jsp?c=nav_num4&is_f=Y\'\">Favorite Game List</button>");
+                    	}
+                    %>
                         <ul>
                         	<% 
-                        	ArrayList<ArrayList<String>> game_set = coop.get_by_from("*", "1", "game", "1");
+                        	String is_favorite = request.getParameter("is_f");
+                        	ArrayList<ArrayList<String>> game_set = new ArrayList<ArrayList<String>>();
+                        	if(is_favorite != null){
+                        		if(is_favorite.equals("Y")){
+                            		ArrayList<ArrayList<String>> favorite_set = coop.get_by_from("*", "player_id", "favorite", current_user.get_id());
+                            		for(i=0;i<favorite_set.size();i++){
+                                		game_set.add(coop.get_by_from("*", "id", "game", favorite_set.get(i).get(1)).get(0));                     			
+                            		}
+                            	}else{
+                                	game_set = coop.get_by_from("*", "1", "game", "1");
+                            	}
+                        	}else{
+                            	game_set = coop.get_by_from("*", "1", "game", "1");
+                        	}
+                        	
                         	for(i=0; i<game_set.size();i++){
                         		if(game_set.get(i).get(7).equals("public")){
                             		out.println("<li><a href='game_detail.jsp?g=" + game_set.get(i).get(0) + "'><img src='" + game_set.get(i).get(6) +"' /><img src='" + game_set.get(i).get(6) +"' /></a><div><h4>" + game_set.get(i).get(1) + "</h4></div></li>");

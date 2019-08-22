@@ -13,6 +13,7 @@
 	String game_name = coop.get_by_from("name", "id", "game", room_info.get(1)).get(0).get(0);
 	String is_started = "0";
 %>
+
 <input type="hidden" id="room_id" name="room_id" value="<% out.println(room_info.get(0));%>">
 <div class="outter1">
 	<div class="center_80">
@@ -44,7 +45,7 @@
 							<%//System.out.println(current_user.get_id().equals(room_info.get(4)));
 							//System.out.println(session.getAttribute("username"));
 							if(current_user == null){
-								out.println("<button onclick='let_visitor_login()' class='button' >Take a Seat</button>");
+								out.println("<button onclick='let_visitor_login()' class='btn' >Take a Seat</button>");
 								}else if(!(current_user.get_id().equals(room_info.get(4)))){
 									
 									
@@ -65,10 +66,23 @@
 				</div>
 				</div>
 				<div class="line_40_div" id="room_log_div" onload="load_room_log();">
-				<h3>Room Log</h3>
-				<p id="room_log_content"><% out.println(room_info.get(6)); %></p>
+  
+			    	<div class="vertical_100_80">
+			    		<h3>Room Log & Chat Box</h3>
+						<p id="room_log_content"><% out.println(room_info.get(6)); %></p>
+			    	</div>
+			    	<div class="vertical_100_20">
+				    	<div class="form-row">
+				    		<div class="form-group col-md-7">
+			    				<input class="form-control" type="text" id="message_input">	    		
+				    		</div>
+				    		<div class="form-group col-md-2">
+				    			<button class="btn" onclick="<% if(current_user != null){ out.print("update_room_log('"+ current_user.get_username() + " : ' + document.getElementById('message_input').value + '<br>');document.getElementById('message_input').value='';");}else{out.print("alert('Please login or sign up first!');window.location.href='http://localhost:8080/BoardGamePlatform/view/login.jsp'");} %>">Send</button>
+				    		</div>
+				    	</div>
+			    	</div>
 				
-				</div>
+				
 				
 			</div>	
 			<div class="vertical_100">
