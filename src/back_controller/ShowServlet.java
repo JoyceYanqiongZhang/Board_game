@@ -26,6 +26,8 @@ public class ShowServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Map<String,HttpSession> onLines= (Map<String,HttpSession>) getServletContext().getAttribute("onLines");
+		//get the request page
+		String request_page = request.getParameter("from");
 		//System.out.println(getServletContext().getAttribute("onLines"));
 		System.out.println("showsevlet" + onLines);
 		List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
@@ -48,7 +50,7 @@ public class ShowServlet extends HttpServlet {
 		}
 		System.out.println(list);
 		request.setAttribute("onLines",list);
-		request.getRequestDispatcher("../view/players.jsp?t=online").forward(request, response);
+		request.getRequestDispatcher("../view/" + request_page + ".jsp").forward(request, response);
 	}
 
 }

@@ -3,9 +3,12 @@
 <%@ page import="java.io.*,java.util.*" %>
 <%@ page import="basic_class.*" %>
 <%@ page import="model.*" %>
+<%@ page import="java.text.DecimalFormat" %>
 
 <%String click_button = request.getParameter("c");
 	Common_operation coop = new Common_operation();
+	Users current_user = (Users)session.getAttribute("current_user");
+	int i;
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -18,6 +21,7 @@
     <meta name="description" content="" />
     <link href="http://localhost:8080/BoardGamePlatform/view/css/css.css" rel="stylesheet" type="text/css" />
     <link href="http://localhost:8080/BoardGamePlatform/view/css/css_joyce.css" rel="stylesheet" type="text/css" />
+    <link href="http://libs.baidu.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="http://localhost:8080/BoardGamePlatform/view/js/jquery-1.8.2.min.js"></script>
     <script src="http://localhost:8080/BoardGamePlatform/view/js/switch.js"></script>
@@ -59,7 +63,7 @@ window.addEventListener("offline" , function()
         	<li class="nav_num3" id="nav_num3"><a>Room<br /><span>Room</span></a></li>
         	<li class="nav_num5" id="nav_num5"><a>Players<br /><span>Players</span></a></li>
             <li class="nav_num2" id="nav_num2"><a>Leaderboard<br /><span>Leaderboard</span></a></li>
-            <li class="nav_num6" id="nav_num6"><a>My Account<br /><span>My Account</span></a></li>
+            <li class="nav_num6" id="nav_num6" <% if(current_user == null){out.print("Style='display:none'");}%>><a href="http://localhost:8080/BoardGamePlatform/view/profile.jsp">My Account<br /><span>My Account</span></a></li>
         </ul>
         <div class="hotline">
             <span>Hi, <% if(session.getAttribute("username") != null)
@@ -99,13 +103,29 @@ window.addEventListener("offline" , function()
         	<li class="nav_num3"><a>Room<br /><span>Room</span></a></li>
         	<li class="nav_num5"><a>Players<br /><span>Players</span></a></li>
             <li class="nav_num2"><a>Leaderboard<br /><span>Leaderboard</span></a></li>
-            <li class="nav_num6"><a>My Account<br /><span>My Account</span></a></li>
+            <li class="nav_num6" <% if(current_user == null){out.print("Style='display:none'");}%>><a href="http://localhost:8080/BoardGamePlatform/view/profile.jsp">My Account<br /><span>My Account</span></a></li>
         </ul>
         <div class="hotline">
-            <img src="./images/telw.png" alt="" />
-            <span>010-57732658</span>
+            <span>Hi, <% if(session.getAttribute("username") != null)
+            {out.println(session.getAttribute("username"));}
+            else{out.println("Visitor");}
+            %></span>
+            <span style="display : <% if(session.getAttribute("username") != null){
+					out.println("none");
+				}else{
+					out.println("block");
+				}
+				%>"><p><a href="login.jsp">Login</a> | <a href="register.jsp">Sign up</a></p></span>
+				
+				<span style="display : <% if(session.getAttribute("username") != null){
+					out.println("block");
+				}else{
+					out.println("none");
+				}
+				%>"><p><a href="logout.jsp">Logout</a></p></span>
         </div>
         <div class="xiangying_nav"></div>
+        
     </div>
 
     <script>
@@ -142,7 +162,7 @@ window.addEventListener("offline" , function()
                                         <h2><span>Start Your Game From Here</span></h2>
                                         <h6></h6>
                                         <h4><span>Solo Game -- Online Game</span></h4>
-                                        <h5><a href="list-case.html">View Games</a></h5>
+                                        <h5><a href="http://localhost:8080/BoardGamePlatform/view/index.jsp?c=nav_num4">View Games</a></h5>
                                     </hgroup>
                                 </div>
                             </li>
@@ -154,7 +174,7 @@ window.addEventListener("offline" , function()
                                             <hgroup>
                                                 <h3>play games with online components</h3>
                                                 <h2>Make Friends in Games</h2>
-                                                <h5><a href="list-case.html">View Players</a></h5>
+                                                <h5><a href="http://localhost:8080/BoardGamePlatform/view/index.jsp?c=nav_num5">View Friends</a></h5>
                                             </hgroup>
                                         </div>
                                     </div>
@@ -168,7 +188,7 @@ window.addEventListener("offline" , function()
                                         <hgroup>
                                             <h3>Win Your Place on The Leaderboard<br /></h3>
                                             <h2>Go Get It!</h2>
-                                            <h5><a href="list-case.html">Leaderboard</a></h5>
+                                            <h5><a href="http://localhost:8080/BoardGamePlatform/view/index.jsp?c=nav_num2">Leaderboard</a></h5>
                                         </hgroup>
                                     </div>
                                 </div>
@@ -280,124 +300,103 @@ window.addEventListener("offline" , function()
             })
         </script>
         <div class="num" id="num_2">
-            <div class="case">
-                <div class="case-top width_1000">
-                    <div class="case-top-left">
-                        <p class="case-top-left-top">Our Works</p>
-                        <p class="case-top-left-bottom">有追求，有坚持</p>
-                    </div>
-                    <div class="case-top-right">
-                        <span></span><sup>+</sup>
-                    </div>
-                </div>
-                <div class="case_ul_wrap">
-                    <ul class="case_ul">
-                        <li>
-                            <a href="">
-                                <div class="show">
-                                    <img src="./images/icons.png" alt="" />
-                                </div>
-                                <img src="./images/case01.jpg" alt="" />
-                                <div class="auto">
-                                    <h4>鄂尔多斯双丰羊毛</h4>
-                                    <span>上市公司、官方网站、欧美风格</span>
-                                    <div class="auto_mask"></div>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="case_ul">
-                        <li>
-                            <a href="">
-                                <div class="show">
-                                    <img src="./images/icons.png" alt="" />
-                                </div>
-                                <img src="./images/case02.jpg" alt="" />
-                                <div class="auto">
-                                    <h4>鄂尔多斯双丰羊毛</h4>
-                                    <span>上市公司、官方网站、欧美风格</span>
-                                    <div class="auto_mask"></div>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="case_ul">
-                        <li>
-                            <a href="">
-                                <div class="show">
-                                    <img src="./images/icons.png" alt="" />
-                                </div>
-                                <img src="./images/case03.jpg" alt="" />
-                                <div class="auto">
-                                    <h4>鄂尔多斯双丰羊毛</h4>
-                                    <span>上市公司、官方网站、欧美风格</span>
-                                    <div class="auto_mask"></div>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+            
+                    <%
+	        	//get the leaderboard data
+	        	String show_time = "week";
+	        	String show_type = "most_win";
+	        	if(request.getParameter("stime") != null){
+	        		show_time = request.getParameter("stime");
+	        	}
+	        	if(request.getParameter("stype") != null){
+	        		show_type = request.getParameter("stype");
+	        	}
+	        	
+	        	ArrayList<ArrayList<String>> leaderboard_set = coop.get_leaderboard(show_time, show_type);
+	        	System.out.println("leaderboard_set" + leaderboard_set.size());
+	        	int id_index = 1;
+	        	int stats_index = 0;
+	        	if(show_type.equals("most_rate")) {
+					id_index = 1;
+	        		stats_index = 3;
+				}
+	        %>
+	            <div class="outter1">
+	            	<div class="center_60" id="leaderboard_div">
+	            		<div class="inner_div">
+		            	<table>
+			            	<tr>
+				            	<td><button class="btn" onclick="window.location.href='http://localhost:8080/BoardGamePlatform/view/index.jsp?c=nav_num2&stype=most_win'">Most Wins</button></td>
+				            	<td><button class="btn" onclick="window.location.href='http://localhost:8080/BoardGamePlatform/view/index.jsp?c=nav_num2&stype=most_play'">Most Plays</button></td>
+				            	<td><button class="btn" onclick="window.location.href='http://localhost:8080/BoardGamePlatform/view/index.jsp?c=nav_num2&stype=most_rate'">Win Rate</button></td>
+				            </tr>
+			            	<tr>
+			            	</tr>
+		            	</table>
+		            	<div class="vertical_100" id="leaderboard_title">
+		            	<% String title_time = show_time.toUpperCase();
+		            	String title_type = "";
+		            	DecimalFormat df = new DecimalFormat("0.00%");
+		            	if(show_type.equals("most_win")){
+		            		title_type = "MOST WINS";
+		            	}else if(show_type.equals("most_play")){
+		            		title_type = "MOST PLAYS";
+		            	}else if(show_type.equals("most_rate")){
+		            		title_type = "MOST WIN-PLAYED RATE";
+		    
+		            	}
+		            	%>
+		            	<h2><% out.print(title_time); %>LY LEADERBOARD of <% out.print(title_type); %> </h2>
+		            	</div>
+		            	<table>
+		            	<tr>
+		            	<td>Filter By:
+		            		<select id="stime_select">
+		            			<option value="day">Day</option>
+		            			<option value="week">Week</option>
+		            			<option value="month">Month</option>
+		            		</select>
+		            		<button class="btn" onclick="window.location.href='http://localhost:8080/BoardGamePlatform/view/index.jsp?c=nav_num2&stype=<% out.print(show_type);%>&stime='+document.getElementById('stime_select').value">Apply</button>
+		            	</td>
+		            	<td></td>
+		            	</tr>
+		            	</table>
+		            	
+		            	<table>
+		        		<tr>
+		        		<th>Rank</th>
+		        		<th>Player name</th>
+		        		<th>Stats</th>
+		        		</tr>
+		        		<%
+		        		i=0;
+		            	int j=1;
+		            	String temp_user_name;
 
-                <div class="teachshow xiangying_anli">
-                    <div id="teach" class="mr_frbox1">
-                        <img class="mr_frBtnL prev" src="./images/prev.png" />
-                        <div class="mr_frUl1">
-                            <ul>
-                                <li>
-                                    <a href="">
-                                        <div class="show">
-                                            <img src="./images/icons.png" alt="" />
-                                        </div>
-                                        <img src="./images/case03.jpg" alt="" />
-                                        <div class="auto">
-                                            <h4>鄂尔多斯双丰羊毛</h4>
-                                            <span>上市公司、官方网站、欧美风格</span>
-                                            <div class="auto_mask"></div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        <div class="show">
-                                            <img src="./images/icons.png" alt="" />
-                                        </div>
-                                        <img src="./images/case01.jpg" alt="" />
-                                        <div class="auto">
-                                            <h4>鄂尔多斯双丰羊毛</h4>
-                                            <span>上市公司、官方网站、欧美风格</span>
-                                            <div class="auto_mask"></div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        <div class="show">
-                                            <img src="./images/icons.png" alt="" />
-                                        </div>
-                                        <img src="./images/case02.jpg" alt="" />
-                                        <div class="auto">
-                                            <h4>鄂尔多斯双丰羊毛</h4>
-                                            <span>上市公司、官方网站、欧美风格</span>
-                                            <div class="auto_mask"></div>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <img class="mr_frBtnR next" src="./images/next.png" />
-                    </div>
-                </div>
+		            	while(i<leaderboard_set.size()){
+		            		if(!leaderboard_set.get(i).get(id_index).equals("none")){
+		    	        		temp_user_name = coop.get_by_from("username", "id", "user", leaderboard_set.get(i).get(id_index)).get(0).get(0);
+		            			if(show_type.equals("most_rate")){
+		    	        			out.print("<tr><td>" + j + "</td><td>" + temp_user_name + "</td><td>" + df.format(Float.parseFloat(leaderboard_set.get(i).get(stats_index).trim())) + "</td></tr>");
+		            			}else{
+		    	        			out.print("<tr><td>" + j + "</td><td>" + temp_user_name + "</td><td>" + leaderboard_set.get(i).get(stats_index) + "</td></tr>");
+		            			}
+		    	        		j++;
+		            		}
+		            		i++;
+		            	}
+		        		%>
+		        		
+		        		</table>
+		        		</div>
+	            	</div>
+	            </div>
                 <script language="javascript">
                     jQuery(".mr_frbox1").slide({ titCell: "", mainCell: ".mr_frUl1 ul", autoPage: true, effect: "leftLoop", autoPlay: true, vis: 1 });
                 </script>
-
-
-
-
-
-                <div class="case-bottm"><a href="list-case.html" style="display:block;width:100%;height:100%;"></a></div>
-            </div>
+  
         </div>
+       
         <div class="num" id="num_3">
             <div class="team width_1000">
                 <div class="title team-title">
@@ -411,8 +410,17 @@ window.addEventListener("offline" , function()
                         <ul>
                         	<% 
                         	ArrayList<ArrayList<String>> game_set = coop.get_by_from("*", "1", "game", "1");
-                        	for(int i=0; i<game_set.size();i++){
-                        		out.println("<li><a href='game_detail.jsp?g=" + game_set.get(i).get(0) + "'><img src='" + game_set.get(i).get(6) +"' /><img src='" + game_set.get(i).get(6) +"' /></a><div><h4>" + game_set.get(i).get(1) + "</h4></div></li>");
+                        	for(i=0; i<game_set.size();i++){
+                        		if(game_set.get(i).get(7).equals("public")){
+                            		out.println("<li><a href='game_detail.jsp?g=" + game_set.get(i).get(0) + "'><img src='" + game_set.get(i).get(6) +"' /><img src='" + game_set.get(i).get(6) +"' /></a><div><h4>" + game_set.get(i).get(1) + "</h4></div></li>");
+                        		}else if(game_set.get(i).get(7).equals("blocked")){
+                        			
+                        		}else if(current_user != null){
+                        			if(game_set.get(i).get(7).equals("premium") && current_user.get_is_premium().equals("1")){
+                                		out.println("<li><a href='game_detail.jsp?g=" + game_set.get(i).get(0) + "'><img src='" + game_set.get(i).get(6) +"' /><img src='" + game_set.get(i).get(6) +"' /></a><div><h4>" + game_set.get(i).get(1) + "</h4></div></li>");
+
+                        			}
+                        		}
                         	}
                         	
                         	%>
@@ -427,19 +435,33 @@ window.addEventListener("offline" , function()
             jQuery(".mr_frbox").slide({ titCell: "", mainCell: ".mr_frUl ul", autoPage: true, effect: "leftLoop", autoPlay: true, vis: 4 });
         </script>
         <div class="num" id="num_4">
-	        <div class="vertical_100">
+		<div class="vertical_100">
+	        <div class="center_60_center">
+	        	<div class="inner_div">
 	        	<form id="create_room" action="http://localhost:8080/BoardGamePlatform/back_controller/Create_room.do" method="post">
 	        	<% ArrayList<ArrayList<String>> all_games = coop.get_by_from("*", "1", "game", "1"); %>
 	        			<input type="hidden" name = "hidden_user_id" id="hidden_user_id" value="<% out.println(session.getAttribute("user_id"));%>"></input>
-	        			<select name="new_room_game">
-	        			<% for(int i=0;i<all_games.size();i++){
-	        					out.println("<option value='"+ all_games.get(i).get(0) +"'>"+ all_games.get(i).get(1) +"</option>");
-	        				} 
-	        			%>
-	        			</select>
-	        		   <button type="submit">Create a New Room</button>
-	        	
+	        			<div class="form-row">
+	        				<div class="form-group col-md-2">	        					
+	        					<p>Choose Game : </p>
+	       					</div>
+	        				<div class="form-group col-md-4">
+	        					<select class="form-control" name="new_room_game">
+				        			<% for(i=0;i<all_games.size();i++){
+				        					out.println("<option value='"+ all_games.get(i).get(0) +"'>"+ all_games.get(i).get(1) +"</option>");
+				        				} 
+				        			%>
+	        					</select>
+	        				</div>	        				
+	        				<div class="form-group col-md-2">
+	        					<button type="submit" class="btn">Create a New Room</button>
+	        				</div>
+	        			</div>
+	        			<br />
+	        		
 	        	</form>
+	        	</div>
+	        </div>
 	        </div>
             <div class="news">
             <div class="news-list">
@@ -449,13 +471,13 @@ window.addEventListener("offline" , function()
             ArrayList<ArrayList<String>> room_set = coop1.get_by_from("*", "is_public", "room", "1" );
 
             ArrayList<ArrayList<ArrayList<String>>> total_room_player_set = new ArrayList<ArrayList<ArrayList<String>>>();
-            for(int i=0;i<room_set.size();i++){
+            for(i=0;i<room_set.size();i++){
             	total_room_player_set.add(coop1.get_by_from("*", "room_id", "room_players", room_set.get(i).get(0) ));
             }
-            for(int i=0; i<room_set.size();i++){
+            for(i=0; i<room_set.size();i++){
             ArrayList<ArrayList<String>> thisgame = coop1.get_by_from("name,pic", "id", "game", room_set.get(i).get(1));
             int num_of_players = total_room_player_set.get(i).size();
-            out.println("<a href='room_details.jsp?r=" + room_set.get(i).get(0) + "'><img src='" + thisgame.get(0).get(1) +"' alt='' /><div><span><sub>Enter</sub></span><p>" +thisgame.get(0).get(0) + "</p></div></a>");
+            out.println("<a href='room_details.jsp?r=" + room_set.get(i).get(0) + "'><img src='" + thisgame.get(0).get(1) +"' alt='' /><div><span><h5>ROOM "+ room_set.get(i).get(0) +"</h5></span><h3>" +thisgame.get(0).get(0) + "</h3></div></a>");
             }
             
             coop1.close();
@@ -463,14 +485,18 @@ window.addEventListener("offline" , function()
             %>
  
                 </div>
-                <div class="case-bottm"><a href="list-news.html" style="display:block;width:100%;height:100%;"></a></div>
+                
             </div>
         </div>
         <div class="num" id="num_5">
-        <div class="outter1">
         <div class="vertical_100">
-        	<button onclick="window.location.href='http://localhost:8080/BoardGamePlatform/back_controller/ShowServlet'">All Online Players</button>
+        <div class="center_60_no">
+        	<div class="inner_div">
+        	<h3>Friend List &nbsp&nbsp&nbsp&nbsp&nbsp |&nbsp&nbsp&nbsp&nbsp&nbsp <button onclick="window.location.href='http://localhost:8080/BoardGamePlatform/back_controller/ShowServlet?from=players'" class="btn">View All Online Players</button></h3>
+        	
+        	</div>
         </div>
+        <div class="center_60_no">
             <div class="cust" style="float:left">
                 
                 <div class="pic-cont">
@@ -486,25 +512,31 @@ window.addEventListener("offline" , function()
                                         	//get friend set
                                         	ArrayList<String> friend_id_set = new ArrayList<String>();
                                         	ArrayList<ArrayList<String>> friendship_set1 = coop.get_by_from("*", "player1_id", "friendship", String.valueOf(session.getAttribute("user_id")) );
-                                        	for(int i=0;i<friendship_set1.size();i++){
+                                        	for(i=0;i<friendship_set1.size();i++){
                                         		friend_id_set.add(friendship_set1.get(i).get(1));
                                         	}
                                         	System.out.println(friendship_set1);
                                         	ArrayList<ArrayList<String>> friendship_set2 = coop.get_by_from("*", "player2_id", "friendship", String.valueOf(session.getAttribute("user_id")) );
-                                        	for(int i=0;i<friendship_set2.size();i++){
+                                        	for(i=0;i<friendship_set2.size();i++){
                                         		friend_id_set.add(friendship_set2.get(i).get(0));
                                         	}
                                         	System.out.println(friendship_set2);
                                         	System.out.println(friend_id_set);
                                         	ArrayList<ArrayList<String>> friend_set = new ArrayList<ArrayList<String>>();
-                                        	for(int i=0;i<friend_id_set.size();i++){
+                                        	for(i=0;i<friend_id_set.size();i++){
                                         		friend_set.add(coop.get_by_from("*", "id", "user", friend_id_set.get(i) ).get(0) );
                                         	}
                                         	
-                                        	
-                                        	for(int i=0;i<friend_set.size();i++){
-                                        		out.println("<a href='player_detail.jsp?u=" + friend_set.get(i).get(0) + "'><span><div class='vertical_100'><img src='"+ friend_set.get(i).get(8) +"' alt='' /></div><div class='vertical_100'><h3>" + friend_set.get(i).get(1) + "</h3></div></span></a>");
+                                        	if(current_user == null){
+                                        		out.print("<h3>Please Login or sign up to view your board game friends!</h3>");
+                                        	}else if(friend_set == null){
+                                        		out.print("<h3>You don't have any friends yet. Go and add some friend!</h3>");
+                                        	}else{
+                                        		for(i=0;i<friend_set.size();i++){
+                                            		out.println("<a href='player_detail.jsp?u=" + friend_set.get(i).get(0) + "'><span><div class='vertical_100'><img src='"+ friend_set.get(i).get(8) +"' alt='' /></div><div class='vertical_100'><h3>" + friend_set.get(i).get(1) + "</h3></div></span></a>");
+                                            	}
                                         	}
+                                        	
                                         	//  href="http://localhost:8080/BoardGamePlatform/back_controller/ShowServlet"	
                                         	//out.println("<tr><td>" + friend_set.get(i).get(0) + "</td><td>" + friend_set.get(i).get(1) + "</td><td>" + friend_set.get(i).get(4) + "</td><td>" + friend_set.get(i).get(5) + "</td><td>" + friend_set.get(i).get(8) + "</td></tr>");
                                         	%>
@@ -523,89 +555,68 @@ window.addEventListener("offline" , function()
                     </div>
                 </div>
             </div>
+            </div>   
             </div>
         </div>
 
-        <div class="num" id="num_6">
-            <div class="cont">
-                <div class="cont-cont width_1000">
-                    <div class="title cust-title">
-                        <img src="./images/cont.png" alt="" />
-                    </div>
-                    <div class="cont-left">
-                        <div class="connect">
-                            <img src="./images/connect.png" alt="" />
-                            <div>
-                                电话<br />
-                                010-57732658 / 010-57105318
-                            </div>
-                        </div>
-                        <div class="address">
-                            <img src="./images/address.png" alt="" />
-                            <div>
-                                地址<br />
-                                北京市朝阳区长楹天街星座5栋2005
-                            </div>
-                        </div>
-                        <div class="email">
-                            <img src="./images/email.png" alt="" />
-                            <div>
-                                邮箱<br />
-                                support@edge-cloud.cn
-                            </div>
-                        </div>
-                        <div class="email">
-                            <img src="./images/email.png" alt="" />
-                            <div>
-                                邮箱<br />
-                                support@edge-cloud.cn
-                            </div>
-                        </div>
-                    </div>
-                    <img src="./images/map.png" alt="" class="cont-right" />
-                </div>
-            </div>
-        </div>
+        
         <!-- 联系侧拉 -->
-        <div class="xuanfu rel">
+        <div class="xuanfu rel" <% if(current_user == null){
+        	out.print("style='display:none'");
+        	}else if(current_user.get_is_manager().equals("N")){
+        		out.print("style='display:none'");
+        	} %>>
             <div class="xf_top">
-                <div class="xf_top_k rel" onclick="javascript:window.open('http://wpa.qq.com/msgrd?v=3&uin=690801653&site=qq&menu=yes','_blank')">
+                <div class="xf_top_k rel" onclick="javascript:window.location.href='http://localhost:8080/BoardGamePlatform/view/manage_game.jsp'">
                     <img src="./images/xftb1.png" height="26" width="29" class="xftb db auto abs trans_fast" />
                     <div class="xf_top_k_nr abs">
                         <div class="xf_top_k1">
                             <div class="xf_topknrr abs xf_nr1">
-                                <a href="http://wpa.qq.com/msgrd?v=3&uin=690801653&site=qq&menu=yes" target="_blank">在线咨询</a>
+                                <a href="http://localhost:8080/BoardGamePlatform/view/manage_game.jsp" target="_blank">Manage Games</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="xf_top_k rel">
-                    <img src="./images/xftb2.png" height="26" width="29" class="xftb db auto abs trans_fast" />
+                <div class="xf_top_k rel" onclick="javascript:window.location.href='http://localhost:8080/BoardGamePlatform/view/manage_room.jsp'">
+                    <img src="./images/xftb1.png" height="26" width="29" class="xftb db auto abs trans_fast" />
                     <div class="xf_top_k_nr abs">
                         <div class="xf_top_k1">
-                            <div class="xf_topknrr abs xf_nr2">
-                                0311-80899002<br />0311-80899003
+                            <div class="xf_topknrr abs xf_nr1">
+                                <a href="http://localhost:8080/BoardGamePlatform/view/manage_room.jsp" target="_blank">Manage Rooms</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="xf_top_k rel">
-                    <img src="./images/xftb3.png" height="26" width="29" class="xftb db auto abs trans_fast" />
+                <div class="xf_top_k rel" onclick="javascript:window.location.href='http://localhost:8080/BoardGamePlatform/view/manage_player.jsp'">
+                    <img src="./images/xftb1.png" height="26" width="29" class="xftb db auto abs trans_fast" />
                     <div class="xf_top_k_nr abs">
-                        <div class="xf_top_k1 xf_nr3">
-
-                            <div class="xf_topknrr abs xf_nr3">
-                                <img src="./images/ewm.png" height="96" width="96" class="abs xf_ewm" />
+                        <div class="xf_top_k1">
+                            <div class="xf_topknrr abs xf_nr1">
+                                <a href="http://localhost:8080/BoardGamePlatform/view/manage_player.jsp" target="_blank">Manage Players</a>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="xf_top_k rel" onclick="javascript:window.location.href='http://localhost:8080/BoardGamePlatform/view/manage_report.jsp'">
+                    <img src="./images/xftb1.png" height="26" width="29" class="xftb db auto abs trans_fast" />
+                    <div class="xf_top_k_nr abs">
+                        <div class="xf_top_k1">
+                            <div class="xf_topknrr abs xf_nr1">
+                                <a href="http://localhost:8080/BoardGamePlatform/view/manage_report.jsp" target="_blank">Report Box</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                
+                
                 <div class="xf_top_k rel">
                     <img src="./images/xftb4.png" height="26" width="29" class="xftb db auto abs trans_fast" />
                     <div class="xf_top_k_nr abs">
                         <div class="xf_top_k1">
                             <div class="xf_topknrr abs xf_nr1">
-                                <span class="fhtop">返回顶部</span>
+                                <span class="fhtop">Back to Top</span>
                             </div>
                         </div>
                     </div>

@@ -1,4 +1,5 @@
 <%@ include file="head.jsp"%>
+<%@ include file="head2.jsp"%>
 <% 
 	Common_operation coop = new Common_operation();
 	String player_num = request.getParameter("role");
@@ -7,10 +8,22 @@
 
 %>
 <div class="outter1">
-	<div class="line_70_div">
+	<div class="center_80">
+		<div class="inner_div">
+		
+	<div class="line_60_div">
     	<canvas id="canvas" width="400" height="400"></canvas>
+    	<br><br>
+    	<div class="form-row">
+    		<div class="form-group col-md-6">
+    			<button class="btn" onclick="window.location.reload();">Play Again</button>
+    		</div>
+    		<div class="form-group col-md-6">
+    			<button class="btn" onclick="window.location.href='http://localhost:8080/BoardGamePlatform/view/index.jsp?c=nav_num3'">Exit Game</button>
+    		</div>
+    	</div>
     </div>
-    <div class="line_30_div" id="room_log_div" onload="load_room_log();">
+    <div class="line_40_div" id="room_log_div" onload="load_room_log();">
 		<h3>Room Log</h3>
 		<p id="room_log_content"><% out.println(room_info.get(6)); %></p>
 	</div>
@@ -113,7 +126,11 @@
  
         //Defines the game
         let player_num = document.getElementById("player_num").value;
-        alert(player_num);
+        if(player_num == 0){
+        	alert("You go first!");
+        }else{
+        	alert("Your opponent go first!");
+        }
         let player_icon;
         let opp_icon;
         let play_first;
@@ -586,9 +603,14 @@
  
         }
     </script>
-    
+	    <div class="vertical_100">
+				<p><br><br><br><br></p>
+		</div>
+    </div>
+	</div>
 </div>
 <%coop.close(); %>
+<%@ include file="manager_bar.jsp"%>
 <%@ include file="footer.jsp"%>
 
  

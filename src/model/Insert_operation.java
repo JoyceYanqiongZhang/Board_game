@@ -15,7 +15,7 @@ public class Insert_operation {
 	}
 		
 	public boolean insert_to_user(Users user) {
-		String sql="INSERT INTO `board_game`.`user` (`username`, `password`, `email`, `gender`, `location`, `date_of_birth`, `is_manager`, `pic`, `is_blocked`, `wins`, `played`, `recover_question`, `recover_answer`, `is_online`) VALUES ('"+ user.get_username()+ "','"+ user.get_password()+ "','" +user.get_email()+ "','" +user.get_gender()+ "','" +user.get_location()+ "'," +user.get_date_of_birth()+ ",'" +user.get_is_manager()+ "','" +user.get_pic()+ "','" +user.get_is_blocked()+ "','" +user.get_wins()+ "','" +user.get_played()+ "','" +user.get_recover_question()+ "','" +user.get_recover_answer()+ "','" + user.get_is_online() + "')";
+		String sql="INSERT INTO `board_game`.`user` (`username`, `password`, `email`, `gender`, `location`, `date_of_birth`, `is_manager`, `pic`, `is_blocked`, `wins`, `played`, `recover_question`, `recover_answer`, `is_premium`) VALUES ('"+ user.get_username()+ "','"+ user.get_password()+ "','" +user.get_email()+ "','" +user.get_gender()+ "','" +user.get_location()+ "'," +user.get_date_of_birth()+ ",'" +user.get_is_manager()+ "','" +user.get_pic()+ "','" +user.get_is_blocked()+ "','" +user.get_wins()+ "','" +user.get_played()+ "','" +user.get_recover_question()+ "','" +user.get_recover_answer()+ "','" + user.get_is_premium() + "')";
 		boolean success = true;
 		try {
 			System.out.println(sql);
@@ -158,7 +158,7 @@ public class Insert_operation {
 	}
 	
 	public boolean insert_to_report(Report report) {
-		String sql="INSERT INTO `board_game`.`report` (`by_id`,`content`,`condition`) VALUES ('"+ report.get_by_id()+ "','"+ report.get_content()+ "','" +report.get_condition()+ "')";
+		String sql="INSERT INTO `board_game`.`report` (`by_id`,`content`,`conditions`) VALUES ('"+ report.get_by_id()+ "','"+ report.get_content()+ "','" +report.get_condition()+ "')";
 		boolean success = true;
 		try {
 			System.out.println(sql);

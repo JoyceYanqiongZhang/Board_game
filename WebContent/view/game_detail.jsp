@@ -1,4 +1,5 @@
 <%@ include file="head.jsp"%>
+<%@ include file="head2.jsp"%>
 
 <% String game_id = request.getParameter("g"); 
 	Common_operation coop = new Common_operation();
@@ -6,48 +7,58 @@
 %>
 <div class="outter1">
 	<div class="vertical_100">
-		<div class="line_40_div">
-			<% out.print("<img src='" + game_detail.get(6) + "'>"); %> 
-		</div>			
-		<div class="line_60_div" id="game_info">
-			<table>
-				<tr>
-					<th>Game Name : </th>
-					<td><% out.println(game_detail.get(1)); %></td>
-				</tr>
-				<tr>
-					<th>Minimal Players : </th>
-					<td><% out.println(game_detail.get(2)); %></td>
-				</tr>
-				<tr>
-					<th>Max Players : </th>
-					<td><% out.println(game_detail.get(3)); %></td>
-				</tr>
-				<tr>
-					<th>Rules : </th>
-					<td><% out.println(game_detail.get(4)); %></td>
-				</tr>
-				<tr>
-					<th>Description : </th>
-					<td><% out.println(game_detail.get(5)); %></td>
-				</tr>
-								
-			</table>
-		</div>	
+		<div class="center_60">
+			<div class="inner_div">
+				<div class="line_40_div" id="game_img_div">
+					<% out.print("<img src='" + game_detail.get(6) + "'>"); %> 
+				</div>			
+				<div class="line_60_div" id="game_info">
+					<table class="normal_table">
+						<tr>
+							<th>Game Name : </th>
+							<td><% out.println(game_detail.get(1)); %></td>
+						</tr>
+						<tr>
+							<th>Minimal Players : </th>
+							<td><% out.println(game_detail.get(2)); %></td>
+						</tr>
+						<tr>
+							<th>Max Players : </th>
+							<td><% out.println(game_detail.get(3)); %></td>
+						</tr>
+						<tr>
+							<th>Rules : </th>
+							<td><% out.println(game_detail.get(4)); %></td>
+						</tr>
+						<tr>
+							<th>Description : </th>
+							<td><% out.println(game_detail.get(5)); %></td>
+						</tr>
+										
+					</table>
+					<br><br>
+				</div>	
+			
+			<div class="vertical_100" >
+				<div class="form-row">
+					<div class="form-group col-md-4">
+						<button class="btn" onclick="<% if(current_user == null){out.print("alert('Please login or sign up first!');window.location.href='http://localhost:8080/BoardGamePlatform/view/login.jsp'");}else{out.print("window.location.href='play_robot.jsp'");}%>">Play With Robot</button>
+					</div>
+					<div class="form-group col-md-4">
+						<button class="btn" onclick="alert('Join a room to play a game now!');window.location.href='http://localhost:8080/BoardGamePlatform/view/index.jsp?c=nav_num3'">Play With Online Players</button>
+					</div>
+					<div class="form-group col-md-4">
+						<button class="btn" onclick="<% if(current_user == null){out.print("alert('Please login or sign up first!');window.location.href='http://localhost:8080/BoardGamePlatform/view/login.jsp'");}else{out.print("add_favorite('" + game_id + "')");}%>">Add to Favorite</button>
+					</div>
+				</div>
+				<br><br><br><br>
+				
+			</div>
+			
+			</div>			
+		</div>
 	</div>
-	<div class="vertical_100" >
-		<div class="line_50_div">
-			<button onclick="window.location.href='play_robot.jsp'">Play With Robot</button>
-		</div>
-		<div class="line_50_div">
-			<button>Play With Online Players</button>
-		</div>
-		<div class="line_50_div">
-			<button>Add to Favorite</button>
-		</div>
-	
-	</div>
-
 </div>
 <%coop.close(); %>
+<%@ include file="manager_bar.jsp"%>
 <%@ include file="footer.jsp"%>

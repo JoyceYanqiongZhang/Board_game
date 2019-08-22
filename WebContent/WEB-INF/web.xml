@@ -46,6 +46,15 @@
 <servlet-name>Get_room_players</servlet-name><!--define servlet name -->
 <servlet-class>back_controller.Get_room_players</servlet-class><!--the file name that servlet is belong to -->
 </servlet>
+<servlet>
+<servlet-name>Update_item</servlet-name><!--define servlet name -->
+<servlet-class>back_controller.Update_item</servlet-class><!--the file name that servlet is belong to -->
+</servlet>
+
+  <servlet>
+<servlet-name>Get_report_content</servlet-name><!--define servlet name -->
+<servlet-class>back_controller.Get_report_content</servlet-class><!--the file name that servlet is belong to -->
+</servlet>
 
 
 <servlet-mapping> <!-- build the mapping between servlet and action -->
@@ -101,6 +110,16 @@
 <servlet-mapping> <!-- build the mapping between servlet and action -->
 <servlet-name>Get_room_players</servlet-name>  
 <url-pattern>/back_controller/Get_room_players.do</url-pattern>    <!-- the action -->
+</servlet-mapping>
+
+<servlet-mapping> <!-- build the mapping between servlet and action -->
+<servlet-name>Update_item</servlet-name>  
+<url-pattern>/back_controller/Update_item.do</url-pattern>    <!-- the action -->
+</servlet-mapping>
+
+<servlet-mapping> <!-- build the mapping between servlet and action -->
+<servlet-name>Get_report_content</servlet-name>  
+<url-pattern>/back_controller/Get_report_content.do</url-pattern>    <!-- the action -->
 </servlet-mapping>
 
 

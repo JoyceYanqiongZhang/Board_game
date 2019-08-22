@@ -19,13 +19,13 @@ public class Users extends Basics {
 	private String played;
 	private String recover_question;
 	private String recover_answer;
-	private String is_online;
+	private String is_premium;
 	
 	public Users() {
 		
 	}
 	
-	public Users(String username, String password, String email, String recover_question, String recover_answer, String is_online) {
+	public Users(String username, String password, String email, String recover_question, String recover_answer, String is_premium) {
 		this.username = username;
 		String en_password = this.Encode( password);
 		this.password = en_password;
@@ -33,17 +33,17 @@ public class Users extends Basics {
 		this.gender = "";
 		this.location = "";
 		this.date_of_birth = null;
-		this.is_manager = "0";
+		this.is_manager = "N";
 		this.pic = "";
-		this.is_blocked = "0";
+		this.is_blocked = "in use";
 		this.wins = "0";
 		this.played = "0";
 		this.recover_question = recover_question;
 		this.recover_answer = recover_answer;
-		this.is_online = is_online;
+		this.is_premium = is_premium;
 	}
 	
-	public Users(String username, String password, String email, String gender, String location, String date_of_birth, String is_manager,String pic, String is_blocked, String wins, String played,String recover_question,String recover_answer, String is_online) {
+	public Users(String username, String password, String email, String gender, String location, String date_of_birth, String is_manager,String pic, String is_blocked, String wins, String played,String recover_question,String recover_answer, String is_premium) {
 		this.username = username;
 		String en_password = this.Encode( password);
 		this.password = en_password;
@@ -58,10 +58,10 @@ public class Users extends Basics {
 		this.played = played;
 		this.recover_question = recover_question;
 		this.recover_answer = recover_answer;
-		this.is_online = is_online;
+		this.is_premium = is_premium;
 	}
 	
-	public Users(String id, String username, String password, String email, String gender, String location, String date_of_birth, String is_manager,String pic, String is_blocked, String wins, String played,String recover_question,String recover_answer,String is_online) {
+	public Users(String id, String username, String password, String email, String gender, String location, String date_of_birth, String is_manager,String pic, String is_blocked, String wins, String played,String recover_question,String recover_answer,String is_premium) {
 		this.id = id;
 		this.username = username;
 		String en_password = this.Encode( password);
@@ -77,7 +77,7 @@ public class Users extends Basics {
 		this.played = played;
 		this.recover_question = recover_question;
 		this.recover_answer = recover_answer;
-		this.is_online = is_online;
+		this.is_premium = is_premium;
 	}
 	
 	public void set_id(String id) {
@@ -194,12 +194,12 @@ public class Users extends Basics {
 		this.recover_answer = recover_answer;
 	}
 	
-    public String get_is_online() {
-    	return this.is_online;
+    public String get_is_premium() {
+    	return this.is_premium;
     } 
     
-    public void set_is_online(String is_online) {
-    	this.is_online = is_online;
+    public void set_is_premium(String is_premium) {
+    	this.is_premium = is_premium;
     }
 	
 	public String Encode(String message){  

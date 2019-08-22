@@ -2,7 +2,7 @@
  * 
  */
 function register_check(){
-	alert("123");
+	//alert("123");
 	var password1 = document.getElementById('passwordId').value;
     var password2 = document.getElementById('confirmPasswordId').value;
     var email = document.getElementById('emailId').value;
@@ -401,15 +401,9 @@ function leave_room(){
 
 function add_friend(friend_id){
 	var current_user_id = document.getElementById("user_id").value;
-	alert(typeof friend_id);
-	alert(typeof current_user_id);
-	alert(friend_id.length);
-	alert(current_user_id[0]);
-	alert(current_user_id[1]);
-	alert(current_user_id[2]);
 	
 	//console.log(typeof friend_id);
-	alert(friend_id == current_user_id);
+	//alert(friend_id == current_user_id);
 	if(friend_id == current_user_id){
 		alert("You cannot add yourself as your friend!");
 	}else{
@@ -479,4 +473,131 @@ function delete_friend(place,friend_id){
 	    })
 	}
 	
+}
+
+function change_availability(game_id,change_to){
+	$.ajax({
+		
+        url:"http://localhost:8080/BoardGamePlatform/back_controller/Update_item.do",
+        async : false,
+        type:"post",
+        data:{
+        	"table" : "game",
+    		"by" : "id",
+    		"content": game_id,
+    		"item": "availability",
+    		"update_content": change_to
+        		},
+        dataType:'text',
+        success:function(result){
+        	window.location.reload();
+        }
+          
+    })
+}
+
+function change_user(change_item,user_id,change_to){
+$.ajax({
+		
+        url:"http://localhost:8080/BoardGamePlatform/back_controller/Update_item.do",
+        async : false,
+        type:"post",
+        data:{
+        	"table" : "user",
+    		"by" : "id",
+    		"content": user_id,
+    		"item": change_item,
+    		"update_content": change_to
+        		},
+        dataType:'text',
+        success:function(result){
+        	window.location.reload();
+        }
+          
+    })
+}
+
+function change_room_block(room_id,change_to){
+$.ajax({
+		
+        url:"http://localhost:8080/BoardGamePlatform/back_controller/Update_item.do",
+        async : false,
+        type:"post",
+        data:{
+        	"table" : "room",
+    		"by" : "id",
+    		"content": room_id,
+    		"item": "is_blocked",
+    		"update_content": change_to
+        		},
+        dataType:'text',
+        success:function(result){
+        	window.location.reload();
+        }
+          
+    })
+}
+
+function show_content(report_id){
+	var show_content_div = document.getElementById("show_content_div");
+	$.ajax({
+
+        url:"http://localhost:8080/BoardGamePlatform/back_controller/Get_report_content.do",
+        async : false,
+        type:"post",
+        data:{
+        		"report_id": report_id
+        		},
+        dataType:'text',
+        success:function(result){
+        	show_content_div.innerHTML = result;
+        	//alert(room_log);
+        	
+        }
+          
+    })
+}
+
+function change_report_condition(report_id,change_to){
+$.ajax({
+		
+        url:"http://localhost:8080/BoardGamePlatform/back_controller/Update_item.do",
+        async : false,
+        type:"post",
+        data:{
+        	"table" : "report",
+    		"by" : "id",
+    		"content": report_id,
+    		"item": "conditions",
+    		"update_content": change_to
+        		},
+        dataType:'text',
+        success:function(result){
+        	window.location.reload();
+        }
+          
+    })
+}
+
+function add_favorite(game_id){
+	var current_user_id = document.getElementById("user_id").value;
+	$.ajax({
+		
+        url:"http://localhost:8080/BoardGamePlatform/back_controller/Create_relationship.do",
+        async : false,
+        type:"post",
+        data:{
+        		"table" : "favorite",
+        		"name1" : "player_id",
+        		"name2": "game_id",
+        		"int1": current_user_id,
+        		"int2": game_id
+        		},
+        dataType:'text',
+        success:function(result){
+        	alert("This game is in your favorite list now!!");
+        	window.location.reload();
+        }
+          
+    })
 }

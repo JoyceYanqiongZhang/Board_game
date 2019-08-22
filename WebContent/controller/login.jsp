@@ -18,11 +18,14 @@
 		session.setAttribute("username", result.get(0).get(1));
 		session.setAttribute("user_id", result.get(0).get(0));
 		session.setAttribute("current_user", current_user);
+		//out.println("<script>alert(" + result.get(0).get(0).length() + ");</script>");
 		out.println("<script>alert('login successful!');window.location.href='../view/index.jsp';</script>");
 		;
 	}else{
 		out.println("<script>alert('login failed! Please try again!');window.location.href='../view/login.jsp';</script>");
 
 	}
+	
+	coop.close();
 	
 %>

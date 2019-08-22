@@ -1,7 +1,10 @@
 <%@ include file="head.jsp"%>
+<%@ include file="head2.jsp"%>
 
 <div class="outter1">
-    <canvas id="canvas" width="400" height="400"></canvas>
+	<div class="center_60_center">
+		<div class="inner_div">
+    	<canvas id="canvas" width="400" height="400"></canvas>
  
     <script>
         //All helper functions
@@ -470,7 +473,9 @@
  
         }
     </script>
+    </div>
+    </div>
 </div>
-
+<%@ include file="manager_bar.jsp"%>
 <%@ include file="footer.jsp"%>
  

@@ -1,6 +1,9 @@
 <%@ include file="head.jsp" %>
+<%@ include file="head2.jsp"%>
 <div class="outter1">
-	<form action="../controller/register.jsp" method="POST">
+	<div class="center_60">
+		<div class="inner_div">
+			<form action="../controller/register.jsp" method="POST">
 
                 <div class="form-row">
                     <label for="usernameId">Username</label>
@@ -23,7 +26,7 @@
                 </div>
 
                 <div class="form-row">
-                    <label for="questionId">Recovery Question</label>
+                    <label for="questionId">Recovery Question</label><br>
                     <textarea class="form_textarea" style="width:400px" placeholder="Your question" id="questionId" name="question" required></textarea>
                     <br>
                     <textarea class="form_textarea" style="width:400px" placeholder="Your answer" id="answerId" name="answer" required></textarea>
@@ -35,12 +38,18 @@
 
                 <div class="form-row">
                     <div style="float:left;padding-right: 5%">
-                        <button class="btn btn-primary" onclick="return register_check()" name="registerSubmit" value="Register">Register</button>
+                        <button class="btn" onclick="return register_check()" name="registerSubmit" value="Register">Register</button>
                     </div>
                     <div style="float:left;padding-right: 5%">
-                        <a href="index.jsp" class="btn btn-primary">Cancel</a>
+                        <a href="index.jsp" class="btn">Cancel</a>
                     </div>
                 </div>
+                
+                <br>
+                <br>
             </form>
+		</div>
+	</div>
+			
 </div>
 <%@ include file="footer.jsp"%>

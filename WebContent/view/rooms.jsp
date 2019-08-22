@@ -1,4 +1,5 @@
 <%@ include file="head.jsp"%>
+<%@ include file="head2.jsp"%>
 
 <% Common_operation coop = new Common_operation();
 ArrayList<ArrayList<String>> room_set = coop.get_by_from("*", "is_public", "room", "1" );
@@ -28,4 +29,5 @@ for(int i=0;i<room_set.size();i++){
 </table>
 
 <%coop.close(); %>
+<%@ include file="manager_bar.jsp"%>
 <%@ include file="footer.jsp"%>

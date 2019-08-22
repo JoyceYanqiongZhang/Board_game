@@ -1,5 +1,5 @@
 <%@ include file="head.jsp"%>
-<div class="outter1">
+<%@ include file="head2.jsp"%>
 <% 
 List<Map<String,Object>> online_user_set = new ArrayList<Map<String,Object>>();
 	online_user_set = (List<Map<String,Object>>)request.getAttribute("onLines");
@@ -13,7 +13,13 @@ List<Map<String,Object>> online_user_set = new ArrayList<Map<String,Object>>();
 
 
 %>
-<div class="cust">
+
+
+<div class="outter1">
+	<div class="center_80">
+		<div class="inner_div">
+		
+			<div class="cust">
                 
                 <div class="pic-cont">
                     
@@ -31,7 +37,7 @@ List<Map<String,Object>> online_user_set = new ArrayList<Map<String,Object>>();
                                         			Users thisuser = (Users)it.next().get("current_user");
                                         			//out.println(it.next().get("user"));
                                         			if(thisuser != null){
-                                                		out.println("<a href='../view/player_detail.jsp?u=" + thisuser.get_id() + "'><span><div class='vertical_100'><img src='"+ thisuser.get_pic() +"' alt='' /></div><div class='vertical_100'><h3>" + thisuser.get_username() + "</h3></div></span>");
+                                                		out.println("<a href='../view/player_detail.jsp?u=" + thisuser.get_id() + "'><span><div class='vertical_100'><img src='"+ thisuser.get_pic() +"' alt='' /></div><div class='vertical_100'><h4>" + thisuser.get_username() + "</h4></div></span>");
 
                                         				//out.println("<tr><td>" + thisuser.get_id() + "</td><td>" + thisuser.get_username() + "</td><td>" + thisuser.get_gender() + "</td><td>" + thisuser.get_location() + "</td><td>" + thisuser.get_pic() + "</td></tr>");
                                         			}
@@ -39,6 +45,7 @@ List<Map<String,Object>> online_user_set = new ArrayList<Map<String,Object>>();
                                         	}
 
                                         	%>
+                                        	
                                            </div> 
                                       
                                     </li>
@@ -54,8 +61,13 @@ List<Map<String,Object>> online_user_set = new ArrayList<Map<String,Object>>();
                     </div>
                 </div>
             </div>
-
-
+		</div>
+		<div class="vertical_100">
+			<p><br><br><br><br></p>
+			</div>
+	</div>
 </div>
+
+<%@ include file="manager_bar.jsp"%>
 
 <%@ include file="footer.jsp"%>

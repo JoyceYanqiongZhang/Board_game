@@ -1,4 +1,5 @@
 <%@ include file="head.jsp"%>
+<%@ include file="head2.jsp"%>
 
 
 <% 
@@ -38,5 +39,5 @@ for(int i=0;i<friend_id_set.size();i++){
 </table>
 </div>
 
-</body>
-</html>
+<%@ include file="manager_bar.jsp"%>
+<%@ include file="footer.jsp"%>
