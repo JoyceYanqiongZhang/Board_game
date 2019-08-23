@@ -7,14 +7,14 @@ public class Comment extends Basics {
 	private int postby_id;
 	private int game_id;
 	private String content;
-	private int replyto_id;
-	private Time time;
+	private String replyto_id;
+	private String time;
 	
 	public Comment() {
 		
 	}
 	
-	public Comment(int postby_id, int game_id, String content, int replyto_id, Time time) {
+	public Comment(int postby_id, int game_id, String content, String replyto_id, String time) {
 		this.postby_id = postby_id;
 		this.game_id = game_id;
 		this.content = content;
@@ -23,7 +23,7 @@ public class Comment extends Basics {
 		
 	}
 	
-	public Comment(int id, int postby_id, int game_id, String content, int replyto_id, Time time) {
+	public Comment(int id, int postby_id, int game_id, String content, String replyto_id, String time) {
 		this.id = id;
 		this.postby_id = postby_id;
 		this.game_id = game_id;
@@ -61,17 +61,17 @@ public class Comment extends Basics {
 		return this.content;
 	}
 	
-	public void set_replyto_id(int replyto_id) {
+	public void set_replyto_id(String replyto_id) {
 		this.replyto_id = replyto_id;
 	}
-	public int get_replyto_id() {
+	public String get_replyto_id() {
 		return this.replyto_id;
 	}
 	
-	public void set_time(Time time) {
+	public void set_time(String time) {
 		this.time = time;
 	}
-	public Time get_time() {
+	public String get_time() {
 		return this.time;
 	}
 	

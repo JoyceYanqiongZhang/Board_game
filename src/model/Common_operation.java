@@ -199,4 +199,28 @@ public class Common_operation {
 		}
 		
 	}
+	
+	
+	public ArrayList<ArrayList<String>> search_by2_from(String table, int by_item_index1, int by_item_index2, String content){
+		ArrayList<ArrayList<String>> all_set = get_by_from("*","1",table,"1");
+		ArrayList<ArrayList<String>> result = new ArrayList<ArrayList<String>>();
+		for(int i=0;i<all_set.size();i++) {
+			if(all_set.get(i).get(by_item_index1).contains(content) || all_set.get(i).get(by_item_index2).contains(content)) {
+				result.add(all_set.get(i));
+			} 
+		}
+		return result;
+	}
+	
+	public ArrayList<ArrayList<String>> search_by1_from(String table, int by_item_index,  String content){
+		ArrayList<ArrayList<String>> all_set = get_by_from("*","1",table,"1");
+		ArrayList<ArrayList<String>> result = new ArrayList<ArrayList<String>>();
+		for(int i=0;i<all_set.size();i++) {
+			if( all_set.get(i).get(by_item_index).contains(content)) {
+				result.add(all_set.get(i));
+			} 
+		}
+		return result;
+	}
 }
+

@@ -733,3 +733,54 @@ $.ajax({
           
     })
 }
+
+function delete_comment(comment_id){
+$.ajax({
+		
+        url:"http://localhost:8080/BoardGamePlatform/back_controller/Delete_item.do",
+        async : false,
+        type:"post",
+        data:{
+        	"table":"comment",
+        	"by": "id",
+        	"content" : comment_id,
+        	
+        		},
+        dataType:'text',
+        success:function(result){
+        	
+            	window.location.href=result;
+        		
+        	
+        }
+          
+    })
+}
+
+function post_comment(game_id){
+	var postby_id = document.getElementById("user_id").value;
+	var content = document.getElementById("post_comment_content").value;
+	
+	
+
+$.ajax({
+		
+        url:"http://localhost:8080/BoardGamePlatform/back_controller/Insert_comment.do",
+        async : false,
+        type:"post",
+        data:{
+        	"postby_id":postby_id,
+        	"game_id": game_id,
+        	"content" : content
+        	
+        		},
+        dataType:'text',
+        success:function(result){
+        	
+            	window.location.href=result;
+        		
+        	
+        }
+          
+    })
+}

@@ -714,12 +714,12 @@ html,body{width:100%;height:100%;}
 .xf_top_k{height:54px;cursor:pointer;}
 .xftb{top:50%;left:50%;margin-top:-13px;margin-left:-15px;opacity:.5;filter:alpha(opacity=50);}
 .xf_top_k_nr{width:154px;height:46px;top:4px;right:-154px;}
-.xf_top_k1{width:154px;height:46px;background:url(../images/xfbg3.png) no-repeat;font-size: 12px;}
+.xf_top_k1{width:154px;height:46px;background:url(../images/xfbg3.png) no-repeat;font-size: 12px !important;}
 .xf_topknrl{top:50%;margin-top: -13px;left:10px;}
 .xf_topknrr{width:100px;height:46px;left:10px;top:50%;margin-top: -23px;}
 .xf_ewm{top:50%;margin-top: -48px;}
 .xf_nr1{line-height:46px;padding-left: 10px;}
-.xf_nr1 a{color:#fff;font-size:15px;}
+.xf_nr1 a{color:#fff;font-size:14px;}
 .xf_nr2{color:#fff;padding-top:6px;height:40px;line-height:16px;}
 .xf_nr3{background:none!important;}
 .xf_nr1 span{color:#fff;font-size:16px;}

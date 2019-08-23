@@ -480,12 +480,16 @@ window.addEventListener("offline" , function()
 		        					</div>      							
 		       					</div>
 	       					</form>
-	       					<form id="search_room_form" action="http://localhost:8080/BoardGamePlatform/back_controller/Search_item.do" method="post">
+	       					<form id="search_room_form" action="http://localhost:8080/BoardGamePlatform/view/search_result_room.jsp" method="post">
+		        				<input type="hidden" name="num_of_items" value="1" />
+			        					<input type="hidden" name="table" value="room" />
+			        					<input type="hidden" name="index1" value="0" />
+			        					
 		        				<div class="form-group col-md-5">
 			        				<div class="form-group col-md-6">
 			        					<input type="hidden" name="search_item" value="room" />
 		        					<p>Search Room : </p>
-		        					<input type="text" name="search_content" id="search_room" class="form-control" />
+		        					<input type="text" name="content" id="search_room" class="form-control" />
 			        				</div>
 			        				<div class="form-group col-md-4">
 			        					<p>&nbsp</p>
@@ -534,7 +538,24 @@ window.addEventListener("offline" , function()
         <div class="center_60_no">
         	<div class="inner_div">
         	<h3>Friend List &nbsp&nbsp&nbsp&nbsp&nbsp |&nbsp&nbsp&nbsp&nbsp&nbsp <button onclick="window.location.href='http://localhost:8080/BoardGamePlatform/back_controller/ShowServlet?from=players'" class="btn">View All Online Players</button></h3>
-        	
+        	<form id="search_room_form" action="http://localhost:8080/BoardGamePlatform/view/search_result_player.jsp" method="post">
+		        				<div class="form-group col-md-8">
+			        				<div class="form-group col-md-6">
+			        					<input type="hidden" name="num_of_items" value="2" />
+			        					<input type="hidden" name="table" value="user" />
+			        					<input type="hidden" name="index1" value="0" />
+			        					<input type="hidden" name="index2" value="1" />
+		        					<p>Search Player : </p>
+		        					<input type="text" name="content" id="search_player" class="form-control" />
+			        				</div>
+			        				<div class="form-group col-md-4">
+			        					<p>&nbsp</p>
+			        					<button type="submit" class="btn">Search</button>
+			        				</div>
+		        					
+		        					
+		        				</div>	
+	        				</form>
         	</div>
         </div>
         <div class="center_60_no">

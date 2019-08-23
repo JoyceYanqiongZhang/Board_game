@@ -4,15 +4,18 @@
 	Common_operation coop = new Common_operation();
 	String show_user_id = request.getParameter("u");
 	ArrayList<String> show_user = coop.get_by_from("*", "id", "user", show_user_id).get(0);
-	
-	String is_friend;
-	if(coop.get_by_from_function("*", "(player1_id,player2_id)", "friendship","('" + show_user_id + "','" + current_user.get_id() + "')" ).size() != 0){
-		is_friend = "2";
-	}else if(coop.get_by_from_function("*", "(player1_id,player2_id)", "friendship","('" + current_user.get_id() + "','" + show_user_id + "')" ).size() != 0){
-		is_friend ="1";
-	}else{
-		is_friend = "0";
+	String is_friend="";
+	if(current_user != null){
+		
+		if(coop.get_by_from_function("*", "(player1_id,player2_id)", "friendship","('" + show_user_id + "','" + current_user.get_id() + "')" ).size() != 0){
+			is_friend = "2";
+		}else if(coop.get_by_from_function("*", "(player1_id,player2_id)", "friendship","('" + current_user.get_id() + "','" + show_user_id + "')" ).size() != 0){
+			is_friend ="1";
+		}else{
+			is_friend = "0";
+		}
 	}
+	
 	%>
 <div class="outter1">
 	<div class="center_60">
@@ -47,13 +50,16 @@
 			<div class="vertical_100">
 			<br><br><br>
 			<%
-				System.out.print(is_friend);
-				if(is_friend.equals("0")){
-					out.print("<button class='btn' onclick=\"add_friend(\'"+ show_user_id +"\')\">Add Friend</button>");
-					
-				}else{
-					out.print("<button class='btn' onclick=\"delete_friend(\'" + is_friend + "\',\'"+ show_user_id +"\')\">Delete Friend</button>");
-				}
+				if(current_user != null){
+					//System.out.print(is_friend);
+					if(is_friend.equals("0")){
+						out.print("<button class='btn' onclick=\"add_friend(\'"+ show_user_id +"\')\">Add Friend</button>");
+						
+					}else{
+						out.print("<button class='btn' onclick=\"delete_friend(\'" + is_friend + "\',\'"+ show_user_id +"\')\">Delete Friend</button>");
+					}
+				}	
+			
 			%>
 			<br><br><br><br>
 			</div>

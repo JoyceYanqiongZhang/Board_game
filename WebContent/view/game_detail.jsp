@@ -1,7 +1,9 @@
 <%@ include file="head.jsp"%>
 <%@ include file="head2.jsp"%>
 
-<% String game_id = request.getParameter("g"); 
+<% 	
+	int i;
+	String game_id = request.getParameter("g"); 
 	Common_operation coop = new Common_operation();
 	ArrayList<String> game_detail = coop.get_by_from("*", "id", "game", game_id).get(0);
 	boolean is_favorite = false;
@@ -71,20 +73,41 @@
 					<hr>
 					
 				</div>
+				
+				<div class="vertical_100" id="show_comment_div">
+			<%
+				//show comments and replys
+				for(i=0;i<comment_set.size();i++){
+					String post_name = coop.get_by_from("username", "id", "user", comment_set.get(i).get(1)).get(0).get(0);
+					if(current_user != null){
+						out.print("<div class='comment_div'><h5>" + comment_set.get(i).get(5) +"</h5><p> " + post_name + " : " + comment_set.get(i).get(3) + "</p>");
+						if(current_user.get_is_manager().equals("Y") || current_user.get_id().equals(comment_set.get(i).get(1))){
+							out.print("<button class='btn' onclick=\"delete_comment(\'" + comment_set.get(i).get(0) + "\')\">Delete</button>");
+						}
+						out.print("<br><br></div>");
+					}else{
+						out.print("<div class='comment_div'><h5>" + comment_set.get(i).get(5) +"</h5><p> " + post_name + " : " + comment_set.get(i).get(3) + "</p>");
+						out.print("<br><br></div>");
+						}
+				
+				}
+				
+			%>
+			
+			</div>
 
 				<div class="vertical_100">
-					<textarea rows="3" cols="" class="form-control"></textarea>
+					<textarea rows="3" cols="" class="form-control" id="post_comment_content"></textarea>
 					<br>
 				</div>
 				<div class="vertical_100">
-					<button class="btn" onclick="<% if(current_user == null){out.print("alert('Please login or sign up first!');window.location.href='http://localhost:8080/BoardGamePlatform/view/login.jsp'");button_string = "Add to Favorite";}else{out.print("post_comment()");}%>">Post</button>
+					<button class="btn" onclick="<% if(current_user == null){out.print("alert('Please login or sign up first!');window.location.href='http://localhost:8080/BoardGamePlatform/view/login.jsp'");button_string = "Add to Favorite";}else{out.print("post_comment('"+ game_id +"')");}%>">Post</button>
+					<br><br><br><br>
 				</div>
 				
 			</div>
-			<div class="vertical_100" id="show_comment_div">
 			
 			
-			</div>
 			
 			</div>			
 		</div>
